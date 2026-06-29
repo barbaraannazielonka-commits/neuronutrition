@@ -1,0 +1,3878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neuro-Nutrition: Feed Your Brain</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #132236;
+    --navy-light: #1A3050;
+    --blue: #4361EE;
+    --blue-light: #6B84F5;
+    --lime: #B5FF4D;
+    --lime-dark: #8FCC2D;
+    --white: #EEF2FF;
+    --slate: #8892B0;
+    --slate-light: #A8B2CC;
+    --red-warn: #FF4D6D;
+    --orange-warn: #FF9F1C;
+    --radius: 16px;
+    --radius-sm: 8px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(13, 27, 42, 0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(67, 97, 238, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    height: 64px;
+  }
+
+  .nav-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--lime);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-logo span { color: var(--white); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--slate-light);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--lime); }
+
+  .nav-cta {
+    background: var(--lime);
+    color: var(--navy) !important;
+    padding: 0.45rem 1.1rem;
+    border-radius: 100px;
+    font-weight: 600 !important;
+  }
+
+  .nav-cta:hover { background: var(--lime-dark); color: var(--navy) !important; }
+
+  /* ─── SECTIONS ─── */
+  .section {
+    padding: 100px 5% 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-full {
+    padding: 100px 5% 80px;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.2rem;
+  }
+
+  .section-sub {
+    color: var(--slate-light);
+    font-size: 1.05rem;
+    max-width: 580px;
+    margin-bottom: 3.5rem;
+    line-height: 1.7;
+  }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 5% 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #neural-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 760px; }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(67, 97, 238, 0.18);
+    border: 1px solid rgba(67, 97, 238, 0.4);
+    border-radius: 100px;
+    padding: 0.3rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--blue-light);
+    margin-bottom: 2rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--lime);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.6); }
+  }
+
+  .hero-title {
+    font-size: clamp(2.8rem, 6vw, 5.2rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title .accent { color: var(--lime); }
+  .hero-title .dim { color: var(--slate); }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--slate-light);
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+    line-height: 1.75;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-stat .num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--lime);
+    display: block;
+    line-height: 1;
+  }
+
+  .hero-stat .label {
+    font-size: 0.78rem;
+    color: var(--slate);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--lime);
+    color: var(--navy);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.85rem 1.8rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover { background: var(--lime-dark); transform: translateY(-2px); }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--white);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.85rem 1.8rem;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.2);
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+    cursor: pointer;
+  }
+
+  .btn-outline:hover { border-color: var(--lime); background: rgba(181, 255, 77, 0.06); }
+
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    border: none;
+    border-top: 1px solid rgba(67, 97, 238, 0.15);
+    margin: 0;
+  }
+
+  /* ─── SCIENCE SECTION ─── */
+  #science { background: var(--navy); }
+
+  .mechanism-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .mech-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(67, 97, 238, 0.15);
+    border-radius: var(--radius);
+    padding: 2rem;
+    transition: border-color 0.25s, transform 0.2s;
+  }
+
+  .mech-card:hover {
+    border-color: rgba(181, 255, 77, 0.3);
+    transform: translateY(-3px);
+  }
+
+  .mech-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1.1rem;
+    display: block;
+  }
+
+  .mech-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    color: var(--white);
+  }
+
+  .mech-card p {
+    font-size: 0.9rem;
+    color: var(--slate-light);
+    line-height: 1.7;
+  }
+
+  .mech-card .badge {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.7rem;
+    border-radius: 100px;
+    background: rgba(67, 97, 238, 0.15);
+    color: var(--blue-light);
+  }
+
+  /* ─── OFFENDERS ─── */
+  #offenders { background: var(--navy-mid); }
+
+  .offender-section-full {
+    background: var(--navy-mid);
+    padding: 100px 5% 80px;
+  }
+
+  .offenders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .offender-card {
+    border-radius: var(--radius);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid transparent;
+    transition: transform 0.2s;
+  }
+
+  .offender-card:hover { transform: translateY(-3px); }
+
+  .offender-card.danger {
+    background: rgba(255, 77, 109, 0.07);
+    border-color: rgba(255, 77, 109, 0.25);
+  }
+
+  .offender-card.warning {
+    background: rgba(255, 159, 28, 0.07);
+    border-color: rgba(255, 159, 28, 0.25);
+  }
+
+  .offender-card .card-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .offender-card.danger .card-label { color: var(--red-warn); }
+  .offender-card.warning .card-label { color: var(--orange-warn); }
+
+  .offender-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .offender-card .sub {
+    font-size: 0.82rem;
+    color: var(--slate-light);
+    margin-bottom: 1.2rem;
+  }
+
+  .offender-effects {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .offender-effects li {
+    font-size: 0.87rem;
+    color: var(--slate-light);
+    padding-left: 1.2rem;
+    position: relative;
+    line-height: 1.55;
+  }
+
+  .offender-effects li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--red-warn);
+    font-size: 0.8rem;
+  }
+
+  .offender-card.warning .offender-effects li::before { color: var(--orange-warn); }
+
+  /* ─── BRAIN FOODS ─── */
+  #brainfoods { background: var(--navy); }
+
+  .foods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .food-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(181, 255, 77, 0.12);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .food-card:hover {
+    border-color: rgba(181, 255, 77, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .food-emoji { font-size: 2rem; display: block; margin-bottom: 0.8rem; }
+
+  .food-card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .food-card p {
+    font-size: 0.82rem;
+    color: var(--slate-light);
+    line-height: 1.6;
+  }
+
+  .food-card .nutrient {
+    display: inline-block;
+    margin-top: 0.7rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--lime);
+  }
+
+  /* ─── QUIZ ─── */
+  #quiz-section { background: var(--navy-mid); padding: 100px 5% 80px; }
+
+  .quiz-inner { max-width: 800px; margin: 0 auto; }
+
+  .quiz-progress-bar {
+    height: 4px;
+    background: rgba(67, 97, 238, 0.2);
+    border-radius: 100px;
+    margin-bottom: 2.5rem;
+    overflow: hidden;
+  }
+
+  .quiz-progress-fill {
+    height: 100%;
+    background: var(--lime);
+    border-radius: 100px;
+    transition: width 0.4s ease;
+  }
+
+  .quiz-step { display: none; }
+  .quiz-step.active { display: block; }
+
+  .quiz-q-num {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--lime);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  .quiz-question {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+  }
+
+  .quiz-hint {
+    font-size: 0.88rem;
+    color: var(--slate);
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .quiz-option {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-sm);
+    padding: 1rem 1.3rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.18s;
+    font-size: 0.95rem;
+    color: var(--white);
+    text-align: left;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .quiz-option:hover {
+    background: rgba(67, 97, 238, 0.12);
+    border-color: var(--blue-light);
+  }
+
+  .quiz-option.selected {
+    background: rgba(181, 255, 77, 0.1);
+    border-color: var(--lime);
+    color: var(--lime);
+  }
+
+  .quiz-option .opt-letter {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 1px solid currentColor;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .quiz-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  /* ─── RESULTS ─── */
+  #quiz-results { display: none; }
+
+  .result-ring-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+
+  .result-ring-svg { width: 200px; height: 200px; }
+
+  .ring-track { fill: none; stroke: rgba(67,97,238,0.15); stroke-width: 14; }
+  .ring-fill {
+    fill: none;
+    stroke-width: 14;
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    transition: stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1);
+  }
+
+  .ring-score-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    fill: var(--white);
+  }
+
+  .ring-label-text {
+    font-size: 0.75rem;
+    fill: var(--slate);
+  }
+
+  .result-tier-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    margin: 1.2rem 0 0.5rem;
+    text-align: center;
+  }
+
+  .result-tier-desc {
+    color: var(--slate-light);
+    text-align: center;
+    max-width: 500px;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .result-breakdown {
+    width: 100%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius);
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .result-breakdown h4 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-bottom: 1.2rem;
+  }
+
+  .breakdown-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .breakdown-label { font-size: 0.87rem; color: var(--slate-light); width: 140px; flex-shrink: 0; }
+
+  .breakdown-bar-bg {
+    flex: 1;
+    height: 6px;
+    background: rgba(67,97,238,0.15);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+
+  .breakdown-bar-fill {
+    height: 100%;
+    border-radius: 100px;
+    transition: width 0.8s ease 0.3s;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .tip-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-sm);
+    padding: 1.2rem;
+  }
+
+  .tip-card h5 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: var(--lime);
+  }
+
+  .tip-card p {
+    font-size: 0.8rem;
+    color: var(--slate-light);
+    line-height: 1.6;
+  }
+
+  /* ─── GLOSSARY ─── */
+  #glossary { background: var(--navy); }
+
+  .glossary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+
+  .gloss-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(67, 97, 238, 0.12);
+    border-radius: var(--radius-sm);
+    padding: 1.4rem 1.6rem;
+    transition: border-color 0.2s;
+  }
+
+  .gloss-card:hover { border-color: rgba(67, 97, 238, 0.4); }
+
+  .gloss-term {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--blue-light);
+    margin-bottom: 0.4rem;
+  }
+
+  .gloss-pronunciation {
+    font-size: 0.75rem;
+    color: var(--slate);
+    font-style: italic;
+    margin-bottom: 0.6rem;
+  }
+
+  .gloss-def {
+    font-size: 0.87rem;
+    color: var(--slate-light);
+    line-height: 1.65;
+  }
+
+  .gloss-example {
+    margin-top: 0.6rem;
+    font-size: 0.8rem;
+    color: var(--slate);
+    border-left: 2px solid rgba(67, 97, 238, 0.3);
+    padding-left: 0.7rem;
+    font-style: italic;
+    line-height: 1.55;
+  }
+
+  /* ─── REFERENCES ─── */
+  #references { background: var(--navy-mid); padding: 100px 5% 80px; }
+
+  .refs-inner { max-width: 900px; margin: 0 auto; }
+
+  .ref-group { margin-bottom: 3rem; }
+
+  .ref-group-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(181, 255, 77, 0.15);
+  }
+
+  .ref-list { display: flex; flex-direction: column; gap: 0.8rem; }
+
+  .ref-item {
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--radius-sm);
+    padding: 1.1rem 1.4rem;
+    transition: border-color 0.2s, background 0.2s;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+  }
+
+  .ref-item:hover {
+    background: rgba(67, 97, 238, 0.08);
+    border-color: rgba(67, 97, 238, 0.35);
+  }
+
+  .ref-num {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--blue-light);
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.05em;
+  }
+
+  .ref-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.25rem;
+    line-height: 1.4;
+  }
+
+  .ref-meta {
+    font-size: 0.78rem;
+    color: var(--slate);
+    line-height: 1.5;
+  }
+
+  .ref-link-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 0.5rem;
+    font-size: 0.72rem;
+    color: var(--blue-light);
+    font-weight: 500;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--navy);
+    border-top: 1px solid rgba(67, 97, 238, 0.1);
+    padding: 2.5rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  footer p { font-size: 0.8rem; color: var(--slate); }
+  footer a { color: var(--slate); font-size: 0.8rem; text-decoration: none; }
+  footer a:hover { color: var(--lime); }
+
+  /* ─── TIMELINE / BRAIN DEV ─── */
+  .timeline {
+    position: relative;
+    padding-left: 2.5rem;
+    border-left: 1px solid rgba(67, 97, 238, 0.25);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .tl-item { position: relative; }
+
+  .tl-dot {
+    position: absolute;
+    left: -2.55rem;
+    top: 0.25rem;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--blue);
+    border: 2px solid var(--navy-mid);
+    box-shadow: 0 0 0 3px rgba(67,97,238,0.2);
+  }
+
+  .tl-age {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 0.3rem;
+  }
+
+  .tl-item h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  .tl-item p {
+    font-size: 0.87rem;
+    color: var(--slate-light);
+    line-height: 1.65;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  /* ─── SCROLL FADE ─── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+    .tips-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 1.5rem; }
+    .hero-title { font-size: 2.6rem; }
+    .breakdown-label { width: 100px; }
+  }
+
+  /* ─── QUIZ SPECIFIC ─── */
+  #quiz-main { }
+  .quiz-category-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.7rem;
+    border-radius: 100px;
+    margin-bottom: 0.8rem;
+  }
+
+  .cat-hydration { background: rgba(67,97,238,0.15); color: var(--blue-light); }
+  .cat-sugar { background: rgba(255,77,109,0.12); color: #FF8BA7; }
+  .cat-nutrients { background: rgba(181,255,77,0.1); color: var(--lime); }
+  .cat-habits { background: rgba(255,159,28,0.12); color: var(--orange-warn); }
+  .cat-quality { background: rgba(181,255,77,0.1); color: var(--lime); }
+
+  .result-green { color: var(--lime); }
+  .result-orange { color: var(--orange-warn); }
+  .result-red { color: var(--red-warn); }
+
+  .score-ring-green { stroke: var(--lime); }
+  .score-ring-orange { stroke: var(--orange-warn); }
+  .score-ring-red { stroke: var(--red-warn); }
+
+  .bar-green { background: var(--lime); }
+  .bar-orange { background: var(--orange-warn); }
+  .bar-red { background: var(--red-warn); }
+
+  /* ─── LIGHT MODE ─── */
+  body.light-mode {
+    --navy: #F5F7FF;
+    --navy-mid: #EAECF8;
+    --navy-light: #DDE1F5;
+    --blue: #3451D1;
+    --blue-light: #3451D1;
+    --lime: #5A8C00;
+    --lime-dark: #3D6000;
+    --white: #1A1F3C;
+    --slate: #4A5280;
+    --slate-light: #3A4070;
+    --red-warn: #CC1A3A;
+    --orange-warn: #C47000;
+    background: #F5F7FF;
+    color: #1A1F3C;
+  }
+
+  body.light-mode nav {
+    background: rgba(245, 247, 255, 0.92);
+    border-bottom: 1px solid rgba(52, 81, 209, 0.18);
+  }
+
+  body.light-mode .nav-logo { color: var(--lime); }
+  body.light-mode .nav-logo span { color: var(--white); }
+  body.light-mode .nav-links a { color: var(--slate); }
+  body.light-mode .nav-links a:hover { color: var(--lime); }
+
+  body.light-mode .nav-cta {
+    background: var(--lime) !important;
+    color: #fff !important;
+  }
+
+  body.light-mode .hero-tag {
+    background: rgba(52, 81, 209, 0.1);
+    border-color: rgba(52, 81, 209, 0.3);
+    color: var(--blue);
+  }
+
+  body.light-mode #neural-canvas { opacity: 0.18; filter: hue-rotate(200deg) saturate(0.6); }
+
+  body.light-mode .hero-stat .num { color: var(--lime); }
+  body.light-mode .hero-stat .label { color: var(--slate); }
+
+  body.light-mode .mech-card {
+    background: #fff;
+    border-color: rgba(52, 81, 209, 0.15);
+    box-shadow: 0 2px 16px rgba(52,81,209,0.06);
+  }
+
+  body.light-mode .mech-card:hover { border-color: rgba(90, 140, 0, 0.4); }
+
+  body.light-mode .mech-card p { color: #4A5280; }
+
+  body.light-mode .mech-card .badge {
+    background: rgba(52, 81, 209, 0.1);
+    color: var(--blue);
+  }
+
+  body.light-mode #offenders-section { background: #EAECF8; }
+
+  body.light-mode .offender-card.danger {
+    background: rgba(204, 26, 58, 0.05);
+    border-color: rgba(204, 26, 58, 0.2);
+  }
+
+  body.light-mode .offender-card.warning {
+    background: rgba(196, 112, 0, 0.05);
+    border-color: rgba(196, 112, 0, 0.2);
+  }
+
+  body.light-mode .offender-effects li { color: #4A5280; }
+
+  body.light-mode .food-card {
+    background: #fff;
+    border-color: rgba(90, 140, 0, 0.2);
+    box-shadow: 0 2px 12px rgba(90,140,0,0.05);
+  }
+
+  body.light-mode .food-card:hover { border-color: rgba(90, 140, 0, 0.5); }
+
+  body.light-mode .food-card p { color: #4A5280; }
+
+  body.light-mode #quiz-section { background: #EAECF8; }
+
+  body.light-mode .quiz-option {
+    background: rgba(52, 81, 209, 0.04);
+    border-color: rgba(52, 81, 209, 0.15);
+    color: #1A1F3C;
+  }
+
+  body.light-mode .quiz-option:hover {
+    background: rgba(52, 81, 209, 0.1);
+    border-color: var(--blue);
+  }
+
+  body.light-mode .quiz-option.selected {
+    background: rgba(90, 140, 0, 0.1);
+    border-color: var(--lime);
+    color: var(--lime);
+  }
+
+  body.light-mode .quiz-hint { color: #6B749A; }
+
+  body.light-mode .result-breakdown {
+    background: rgba(52, 81, 209, 0.04);
+    border-color: rgba(52, 81, 209, 0.12);
+  }
+
+  body.light-mode .result-breakdown h4 { color: #6B749A; }
+  body.light-mode .breakdown-label { color: #4A5280; }
+
+  body.light-mode .breakdown-bar-bg { background: rgba(52, 81, 209, 0.1); }
+
+  body.light-mode .tip-card {
+    background: #fff;
+    border-color: rgba(52, 81, 209, 0.1);
+    box-shadow: 0 2px 8px rgba(52,81,209,0.06);
+  }
+
+  body.light-mode .tip-card p { color: #4A5280; }
+
+  body.light-mode .gloss-card {
+    background: #fff;
+    border-color: rgba(52, 81, 209, 0.12);
+    box-shadow: 0 2px 8px rgba(52,81,209,0.04);
+  }
+
+  body.light-mode .gloss-card:hover { border-color: rgba(52, 81, 209, 0.35); }
+
+  body.light-mode .gloss-def { color: #4A5280; }
+  body.light-mode .gloss-pronunciation { color: #6B749A; }
+  body.light-mode .gloss-example { color: #6B749A; border-left-color: rgba(52, 81, 209, 0.3); }
+
+  body.light-mode #references { background: #EAECF8; }
+
+  body.light-mode .ref-item {
+    background: rgba(255,255,255,0.7);
+    border-color: rgba(52, 81, 209, 0.1);
+  }
+
+  body.light-mode .ref-item:hover {
+    background: rgba(52, 81, 209, 0.06);
+    border-color: rgba(52, 81, 209, 0.3);
+  }
+
+  body.light-mode .ref-title { color: #1A1F3C; }
+  body.light-mode .ref-meta { color: #4A5280; }
+
+  body.light-mode .divider { border-color: rgba(52, 81, 209, 0.12); }
+
+  body.light-mode footer {
+    background: #F5F7FF;
+    border-top-color: rgba(52, 81, 209, 0.12);
+  }
+
+  body.light-mode footer p { color: #6B749A; }
+  body.light-mode footer a { color: #6B749A; }
+  body.light-mode footer a:hover { color: var(--lime); }
+
+  body.light-mode .tl-item p { color: #4A5280; }
+  body.light-mode .section-sub { color: #4A5280; }
+  body.light-mode .hero-sub { color: #4A5280; }
+  body.light-mode .hero-dim { color: #8892B0; }
+  body.light-mode .ring-score-text { fill: #1A1F3C; }
+  body.light-mode .ring-label-text { fill: #6B749A; }
+  body.light-mode .ring-track { stroke: rgba(52,81,209,0.12); }
+  body.light-mode .result-tier-desc { color: #4A5280; }
+
+  /* ─── MODE TOGGLE BUTTON ─── */
+  .mode-toggle {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 100px;
+    padding: 0.4rem 0.85rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .mode-toggle:hover {
+    background: rgba(255,255,255,0.14);
+    border-color: rgba(255,255,255,0.3);
+    transform: scale(1.08);
+  }
+
+  body.light-mode .mode-toggle {
+    background: rgba(52, 81, 209, 0.08);
+    border-color: rgba(52, 81, 209, 0.2);
+  }
+
+  body.light-mode .mode-toggle:hover {
+    background: rgba(52, 81, 209, 0.15);
+  }
+
+
+  /* ══ MEAL PLAN PAGE STYLES ══ */
+
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #132236;
+    --navy-light: #1A3050;
+    --blue: #4361EE;
+    --blue-light: #6B84F5;
+    --lime: #B5FF4D;
+    --lime-dark: #8FCC2D;
+    --white: #EEF2FF;
+    --slate: #8892B0;
+    --slate-light: #A8B2CC;
+    --red-warn: #FF4D6D;
+    --orange-warn: #FF9F1C;
+    --radius: 16px;
+    --radius-sm: 8px;
+    --breakfast: #4361EE;
+    --lunch: #B5FF4D;
+    --dinner: #FF9F1C;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5 { font-family: 'Space Grotesk', sans-serif; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(13, 27, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(67, 97, 238, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    height: 64px;
+    gap: 1rem;
+  }
+
+  .nav-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--lime);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
+  }
+
+  .nav-logo span { color: var(--white); }
+
+  .nav-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--slate-light);
+    text-decoration: none;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 100px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .nav-back:hover { color: var(--lime); border-color: rgba(181,255,77,0.3); }
+
+  .mode-toggle {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 100px;
+    padding: 0.4rem 0.85rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .mode-toggle:hover {
+    background: rgba(255,255,255,0.14);
+    transform: scale(1.08);
+  }
+
+  /* ─── HERO ─── */
+  .page-hero {
+    padding: 120px 5% 70px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 1rem;
+  }
+
+  .page-title {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.2rem;
+  }
+
+  .page-title .accent { color: var(--lime); }
+
+  .page-sub {
+    color: var(--slate-light);
+    font-size: 1.05rem;
+    max-width: 600px;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+  }
+
+  /* ─── LEGEND ─── */
+  .legend {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--slate-light);
+  }
+
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .dot-breakfast { background: var(--breakfast); }
+  .dot-lunch { background: var(--lime); }
+  .dot-dinner { background: var(--dinner); }
+
+  /* ─── NUTRITION BANNER ─── */
+  .nutrition-banner {
+    background: var(--navy-mid);
+    border: 1px solid rgba(67, 97, 238, 0.18);
+    border-radius: var(--radius);
+    padding: 1.6rem 2rem;
+    margin-bottom: 4rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .banner-stat .label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-bottom: 0.3rem;
+  }
+
+  .banner-stat .value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.4;
+  }
+
+  /* ─── WEEK GRID ─── */
+  .week-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5% 100px;
+  }
+
+  .day-block {
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .day-block.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .day-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .day-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+
+  .day-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .day-theme {
+    margin-left: auto;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--lime);
+    background: rgba(181,255,77,0.08);
+    border: 1px solid rgba(181,255,77,0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+  }
+
+  .meals-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  /* ─── MEAL CARD ─── */
+  .meal-card {
+    background: var(--navy-mid);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .meal-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  }
+
+  .meal-card.breakfast:hover { border-color: rgba(67,97,238,0.4); }
+  .meal-card.lunch:hover { border-color: rgba(181,255,77,0.3); }
+  .meal-card.dinner:hover { border-color: rgba(255,159,28,0.35); }
+
+  .meal-type-bar {
+    height: 3px;
+    width: 100%;
+  }
+
+  .meal-card.breakfast .meal-type-bar { background: var(--blue); }
+  .meal-card.lunch .meal-type-bar { background: var(--lime); }
+  .meal-card.dinner .meal-type-bar { background: var(--dinner); }
+
+  .meal-body { padding: 1.3rem 1.4rem 1.4rem; }
+
+  .meal-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .meal-card.breakfast .meal-label { color: var(--blue-light); }
+  .meal-card.lunch .meal-label { color: var(--lime); }
+  .meal-card.dinner .meal-label { color: var(--dinner); }
+
+  .meal-emoji {
+    font-size: 1.8rem;
+    display: block;
+    margin-bottom: 0.6rem;
+    line-height: 1;
+  }
+
+  .meal-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+    color: var(--white);
+  }
+
+  .meal-desc {
+    font-size: 0.82rem;
+    color: var(--slate-light);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .meal-nutrients {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .nutrient-tag {
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.55rem;
+    border-radius: 100px;
+  }
+
+  .meal-card.breakfast .nutrient-tag {
+    background: rgba(67,97,238,0.12);
+    color: var(--blue-light);
+  }
+
+  .meal-card.lunch .nutrient-tag {
+    background: rgba(181,255,77,0.1);
+    color: var(--lime-dark);
+  }
+
+  .meal-card.dinner .nutrient-tag {
+    background: rgba(255,159,28,0.1);
+    color: var(--dinner);
+  }
+
+  .brain-benefit {
+    margin-top: 0.9rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    font-size: 0.78rem;
+    color: var(--slate);
+    line-height: 1.55;
+  }
+
+  .brain-benefit strong {
+    color: var(--slate-light);
+    font-weight: 600;
+  }
+
+  /* ─── TIPS STRIP ─── */
+  .tips-strip {
+    background: var(--navy-mid);
+    border-top: 1px solid rgba(67,97,238,0.12);
+    border-bottom: 1px solid rgba(67,97,238,0.12);
+    padding: 3rem 5%;
+    margin-bottom: 0;
+  }
+
+  .tips-strip-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .tips-strip h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .tip-item {
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+  }
+
+  .tip-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .tip-item h5 {
+    font-size: 0.87rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+    color: var(--white);
+  }
+
+  .tip-item p {
+    font-size: 0.78rem;
+    color: var(--slate-light);
+    line-height: 1.6;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--navy);
+    border-top: 1px solid rgba(67, 97, 238, 0.1);
+    padding: 2.5rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  footer p { font-size: 0.8rem; color: var(--slate); }
+  footer a { color: var(--slate); font-size: 0.8rem; text-decoration: none; }
+  footer a:hover { color: var(--lime); }
+
+  /* ─── DIVIDER ─── */
+  .day-divider {
+    border: none;
+    border-top: 1px solid rgba(67,97,238,0.1);
+    margin: 0 0 3rem;
+  }
+
+  /* ─── LIGHT MODE ─── */
+  body.light-mode {
+    background: #F5F7FF;
+    color: #1A1F3C;
+    --navy: #F5F7FF;
+    --navy-mid: #EAECF8;
+    --navy-light: #DDE1F5;
+    --blue: #3451D1;
+    --blue-light: #3451D1;
+    --lime: #5A8C00;
+    --lime-dark: #3D6000;
+    --white: #1A1F3C;
+    --slate: #4A5280;
+    --slate-light: #3A4070;
+    --dinner: #C47000;
+  }
+
+  body.light-mode nav {
+    background: rgba(245, 247, 255, 0.92);
+    border-bottom: 1px solid rgba(52, 81, 209, 0.18);
+  }
+
+  body.light-mode .nav-logo { color: var(--lime); }
+  body.light-mode .nav-logo span { color: #1A1F3C; }
+  body.light-mode .nav-back { color: #4A5280; border-color: rgba(52,81,209,0.2); }
+  body.light-mode .nav-back:hover { color: var(--lime); }
+
+  body.light-mode .mode-toggle {
+    background: rgba(52,81,209,0.08);
+    border-color: rgba(52,81,209,0.2);
+  }
+
+  body.light-mode .nutrition-banner {
+    background: #fff;
+    border-color: rgba(52,81,209,0.12);
+    box-shadow: 0 2px 12px rgba(52,81,209,0.06);
+  }
+
+  body.light-mode .banner-stat .value { color: #1A1F3C; }
+
+  body.light-mode .meal-card {
+    background: #fff;
+    border-color: rgba(52,81,209,0.08);
+    box-shadow: 0 2px 8px rgba(52,81,209,0.05);
+  }
+
+  body.light-mode .meal-card.breakfast:hover { border-color: rgba(52,81,209,0.35); }
+  body.light-mode .meal-card.lunch:hover { border-color: rgba(90,140,0,0.35); }
+  body.light-mode .meal-card.dinner:hover { border-color: rgba(196,112,0,0.35); }
+
+  body.light-mode .meal-card.breakfast .meal-type-bar { background: #3451D1; }
+  body.light-mode .meal-card.lunch .meal-type-bar { background: #5A8C00; }
+  body.light-mode .meal-card.dinner .meal-type-bar { background: #C47000; }
+
+  body.light-mode .meal-card.breakfast .meal-label { color: #3451D1; }
+  body.light-mode .meal-card.lunch .meal-label { color: #5A8C00; }
+  body.light-mode .meal-card.dinner .meal-label { color: #C47000; }
+
+  body.light-mode .meal-name { color: #1A1F3C; }
+  body.light-mode .meal-desc { color: #4A5280; }
+
+  body.light-mode .meal-card.breakfast .nutrient-tag { background: rgba(52,81,209,0.1); color: #3451D1; }
+  body.light-mode .meal-card.lunch .nutrient-tag { background: rgba(90,140,0,0.1); color: #5A8C00; }
+  body.light-mode .meal-card.dinner .nutrient-tag { background: rgba(196,112,0,0.1); color: #C47000; }
+
+  body.light-mode .brain-benefit { color: #6B749A; border-top-color: rgba(52,81,209,0.1); }
+  body.light-mode .brain-benefit strong { color: #4A5280; }
+
+  body.light-mode .tips-strip { background: #EAECF8; border-color: rgba(52,81,209,0.1); }
+  body.light-mode .tip-item h5 { color: #1A1F3C; }
+  body.light-mode .tip-item p { color: #4A5280; }
+
+  body.light-mode .day-divider { border-color: rgba(52,81,209,0.1); }
+  body.light-mode .day-theme { color: #5A8C00; background: rgba(90,140,0,0.07); border-color: rgba(90,140,0,0.2); }
+
+  body.light-mode footer { background: #F5F7FF; border-top-color: rgba(52,81,209,0.1); }
+  body.light-mode footer p, body.light-mode footer a { color: #6B749A; }
+
+  body.light-mode .page-sub { color: #4A5280; }
+  body.light-mode .legend-item { color: #4A5280; }
+  body.light-mode .dot-lunch { background: #5A8C00; }
+  body.light-mode { --lunch: #5A8C00; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .meals-row { grid-template-columns: 1fr; }
+    .day-theme { display: none; }
+    .tips-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .legend { gap: 1rem; }
+  }
+
+  /* ─── LIGHT MODE EXTRAS ─── */
+  body.light-mode .day-name { color: #1A1F3C; }
+  body.light-mode .day-number { color: #6B749A; }
+  body.light-mode .page-title { color: #1A1F3C; }
+  body.light-mode .page-title .accent { color: #5A8C00; }
+  body.light-mode .eyebrow { color: #5A8C00; }
+  body.light-mode .banner-stat .label { color: #6B749A; }
+  body.light-mode .tips-strip h3 { color: #1A1F3C; }
+  body.light-mode .day-divider { border-top-color: rgba(52,81,209,0.1); }
+  body.light-mode .legend-item { color: #4A5280; }
+  body.light-mode .dot-breakfast { background: #3451D1; }
+  body.light-mode .dot-dinner { background: #C47000; }
+  body.light-mode .meal-card.lunch .meal-label { color: #5A8C00; }
+  body.light-mode .meal-card.lunch .nutrient-tag { background: rgba(90,140,0,0.1); color: #5A8C00; }
+  body.light-mode .meal-card.lunch .meal-type-bar { background: #5A8C00; }
+
+
+
+  /* ══ MYTHS PAGE STYLES ══ */
+  .myths-hero {
+    padding: 120px 5% 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .myths-intro {
+    color: var(--slate-light);
+    font-size: 1.05rem;
+    max-width: 600px;
+    line-height: 1.75;
+    margin-bottom: 3rem;
+  }
+
+  .myths-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5% 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .myth-card {
+    background: var(--navy-mid);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.2s;
+  }
+
+  .myth-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .myth-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  }
+
+  .myth-num-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 1.5rem 0;
+  }
+
+  .myth-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--slate);
+  }
+
+  .myth-divider-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .myth-body { padding: 1rem 1.5rem 1.5rem; }
+
+  .myth-row {
+    display: flex;
+    gap: 0.7rem;
+    margin-bottom: 1rem;
+    align-items: flex-start;
+  }
+
+  .myth-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+    line-height: 1;
+  }
+
+  .myth-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .myth-label.lbl-myth { color: #FF6B88; }
+  .myth-label.lbl-fact { color: var(--lime); }
+
+  .myth-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.97rem;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+
+  .myth-row.is-myth .myth-text { color: var(--slate-light); }
+  .myth-row.is-fact .myth-text { color: var(--white); }
+
+  .myth-sep {
+    height: 1px;
+    background: rgba(255,255,255,0.06);
+    margin: 0.8rem 0;
+  }
+
+  /* Light mode myths */
+  body.light-mode .myth-card {
+    background: #fff;
+    border-color: rgba(52,81,209,0.08);
+    box-shadow: 0 2px 8px rgba(52,81,209,0.05);
+  }
+
+  body.light-mode .myth-card:hover {
+    box-shadow: 0 8px 24px rgba(52,81,209,0.12);
+  }
+
+  body.light-mode .myth-num { color: #8892B0; }
+  body.light-mode .myth-divider-line { background: rgba(52,81,209,0.08); }
+  body.light-mode .myth-sep { background: rgba(52,81,209,0.08); }
+  body.light-mode .myth-row.is-myth .myth-text { color: #4A5280; }
+  body.light-mode .myth-row.is-fact .myth-text { color: #1A1F3C; }
+  body.light-mode .myth-label.lbl-myth { color: #CC1A3A; }
+  body.light-mode .myth-label.lbl-fact { color: #5A8C00; }
+  body.light-mode .myths-intro { color: #4A5280; }
+
+  @media (max-width: 768px) {
+    .myths-grid { grid-template-columns: 1fr; }
+  }
+
+</style>
+</head>
+
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <a class="nav-logo" href="javascript:void(0)" onclick="navScroll('hero')">Neuro<span>-Nutrition</span></a>
+  <ul class="nav-links" id="main-nav-links">
+    <li><a href="javascript:void(0)" onclick="navScroll('science')">The Science</a></li>
+    <li><a href="javascript:void(0)" onclick="navScroll('offenders-section')">Watch Out</a></li>
+    <li><a href="javascript:void(0)" onclick="navScroll('brainfoods')">Brain Foods</a></li>
+    <li><a href="javascript:void(0)" onclick="showMyths()">Myths</a></li>
+    <li><a href="javascript:void(0)" onclick="showMealPlan()">Meal Plan</a></li>
+    <li><a href="javascript:void(0)" onclick="navScroll('quiz-section')">Diet Quiz</a></li>
+    <li><a href="javascript:void(0)" onclick="navScroll('glossary')">Glossary</a></li>
+    <li><a href="javascript:void(0)" onclick="navScroll('references')">References</a></li>
+  </ul>
+  <ul class="nav-links" id="myths-nav-links" style="display:none;">
+    <li><a href="javascript:void(0)" onclick="showMainSite()" style="color:var(--lime);">← Back to main site</a></li>
+    <li><span style="color:var(--slate);font-size:0.85rem;font-weight:600;">Myths and Misconceptions</span></li>
+  </ul>
+  <ul class="nav-links" id="meal-plan-nav-links" style="display:none;">
+    <li><a href="javascript:void(0)" onclick="showMainSite()" style="color:var(--lime);">← Back to main site</a></li>
+    <li><a href="javascript:void(0)" onclick="showMyths()">Myths</a></li>
+    <li><span style="color:var(--slate);font-size:0.85rem;font-weight:600;">Meal Plan</span></li>
+  </ul>
+  <button class="mode-toggle" onclick="toggleMode()" id="mode-btn" title="Toggle light/dark mode">☀️</button>
+</nav>
+
+<div id="main-content">
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <canvas id="neural-canvas"></canvas>
+
+  <div class="hero-content">
+    <div class="hero-tag">Evidence-Based Neuroscience for Teens</div>
+
+    <h1 class="hero-title">
+      Your brain is<br>
+      <span class="accent">still being built.</span><br>
+      <span class="dim">What are you feeding it?</span>
+    </h1>
+
+    <p class="hero-sub">
+      The teenage brain undergoes its most radical rewiring since infancy. 
+      The food you eat right now literally shapes the architecture of your 
+      prefrontal cortex, memory systems, and mood regulation for decades to come.
+    </p>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="num">90%</span>
+        <span class="label">of serotonin made in your gut</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">~25</span>
+        <span class="label">Age brain nears full maturity</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">~35%</span>
+        <span class="label">Lower depression risk with good diet</span>
+      </div>
+    </div>
+
+    <div class="hero-btns">
+      <a href="javascript:void(0)" onclick="navScroll('quiz-section')" class="btn-primary">Test Your Diet →</a>
+      <a href="javascript:void(0)" onclick="navScroll('science')" class="btn-outline">The Science</a>
+    </div>
+  </div>
+</section>
+
+
+<hr class="divider">
+
+<!-- ─── THE SCIENCE ─── -->
+<section id="science">
+  <div class="section">
+    <span class="eyebrow">Neuroscience</span>
+    <h2 class="section-title">How food rewires<br>your brain</h2>
+    <p class="section-sub">
+      This isn't about being healthy in a vague sense. These are specific, measurable 
+      biological mechanisms happening inside your skull right now.
+    </p>
+
+    <div class="mechanism-grid">
+      <div class="mech-card fade-in">
+        <span class="mech-icon">🧠</span>
+        <h3>Synaptogenesis & Pruning</h3>
+        <p>During adolescence, your brain creates millions of new synaptic connections, 
+        then prunes the unused ones, in a "use it or lose it" system. Omega-3 fatty acids 
+        (DHA especially) are the structural material synapses are built from. 
+        Without them, this process is compromised.</p>
+        <span class="badge">Structural Development</span>
+      </div>
+
+      <div class="mech-card fade-in">
+        <span class="mech-icon">⚡</span>
+        <h3>Myelination</h3>
+        <p>Myelin is the fatty insulation wrapped around nerve fibres, which is what makes 
+        signals travel faster. The prefrontal cortex (your decision-making, impulse-control 
+        centre) is still myelinating through your mid-20s. Saturated fats and trans fats 
+        from ultra-processed food can disrupt this process.</p>
+        <span class="badge">Neural Speed</span>
+      </div>
+
+      <div class="mech-card fade-in">
+        <span class="mech-icon">💬</span>
+        <h3>Neurotransmitter Production</h3>
+        <p>Serotonin (mood), dopamine (motivation), and GABA (calm focus) are built 
+        from amino acids you get from food. Tryptophan → serotonin. Tyrosine → dopamine. 
+        Without protein diversity and key micronutrients, your brain literally cannot 
+        manufacture the chemicals that regulate how you feel and think.</p>
+        <span class="badge">Mood & Motivation</span>
+      </div>
+
+      <div class="mech-card fade-in">
+        <span class="mech-icon">🔥</span>
+        <h3>Neuroinflammation</h3>
+        <p>Ultra-processed diets trigger low-grade systemic inflammation that crosses 
+        the blood-brain barrier. This neuroinflammation directly impairs synaptogenesis 
+        and has been linked to smaller hippocampal volume, the brain region central 
+        to learning and memory.</p>
+        <span class="badge">Brain Protection</span>
+      </div>
+
+      <div class="mech-card fade-in">
+        <span class="mech-icon">🦠</span>
+        <h3>The Gut-Brain Axis</h3>
+        <p>Your gut contains 500 million neurons and produces ~90% of your body's serotonin. 
+        Diet shapes your gut microbiome composition, which in turn influences mood, anxiety 
+        levels, and cognitive clarity through the vagus nerve, a direct neural highway 
+        to your brain.</p>
+        <span class="badge">Gut-Brain Connection</span>
+      </div>
+
+      <div class="mech-card fade-in">
+        <span class="mech-icon">🌱</span>
+        <h3>BDNF: Brain Fertiliser</h3>
+        <p>Brain-Derived Neurotrophic Factor (BDNF) is a protein that supports neuron 
+        survival and growth. It's essentially fertiliser for your brain. Diet directly 
+        modulates BDNF levels. Omega-3s and polyphenols increase it, while sugar and 
+        saturated fats suppress it.</p>
+        <span class="badge">Neuroplasticity</span>
+      </div>
+    </div>
+
+    <!-- Brain Development Timeline -->
+    <div style="margin-top: 5rem;">
+      <div class="two-col">
+        <div>
+          <span class="eyebrow">Brain Development Timeline</span>
+          <h3 class="section-title" style="font-size: 1.8rem;">Why your teen years<br>are critical</h3>
+          <p style="color: var(--slate-light); font-size: 0.92rem; line-height: 1.75; margin-bottom: 1.5rem;">
+            The brain does not fully mature until approximately age 25. 
+            Adolescence is the second great critical period of development. 
+            the first being the first 3 years of life. Nutritional choices 
+            during this window have a disproportionate, long-lasting effect.
+          </p>
+        </div>
+        <div class="timeline">
+          <div class="tl-item fade-in">
+            <div class="tl-dot"></div>
+            <div class="tl-age">Ages 12 to 14</div>
+            <h4>Amygdala Growth</h4>
+            <p>Emotional regulation centres expand rapidly. Iron and zinc are critical: 
+            deficiencies alter dopamine and serotonin pathways, affecting mood and behaviour.</p>
+          </div>
+          <div class="tl-item fade-in">
+            <div class="tl-dot"></div>
+            <div class="tl-age">Ages 14 to 17</div>
+            <h4>Peak Synaptic Density</h4>
+            <p>Maximum synapse formation. DHA from omega-3s is the literal building block. 
+            High-sugar diets actively suppress BDNF during this peak window.</p>
+          </div>
+          <div class="tl-item fade-in">
+            <div class="tl-dot"></div>
+            <div class="tl-age">Ages 17 to 21</div>
+            <h4>Prefrontal Cortex Myelination</h4>
+            <p>Decision-making, impulse control, and long-term planning circuits are being 
+            insulated. The quality of dietary fats consumed has a direct structural impact.</p>
+          </div>
+          <div class="tl-item fade-in">
+            <div class="tl-dot" style="background: var(--lime);"></div>
+            <div class="tl-age">Ages 21 to 25</div>
+            <h4>Final Pruning & Consolidation</h4>
+            <p>The brain finalises its architecture. Antioxidants and anti-inflammatory 
+            nutrients protect gains made during earlier phases of development.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ─── OFFENDERS ─── -->
+<section id="offenders-section" class="offender-section-full">
+  <div style="max-width:1200px; margin: 0 auto;">
+    <span class="eyebrow">What to Watch Out For</span>
+    <h2 class="section-title">Norwegian teens' biggest<br>dietary threats</h2>
+    <p class="section-sub">
+      These aren't just "unhealthy" in a generic sense. Here's exactly what they do 
+      to your developing brain, mechanism by mechanism.
+    </p>
+
+    <div class="offenders-grid">
+      <div class="offender-card danger fade-in">
+        <div class="card-label">⚠ High Risk</div>
+        <h3>⚡ Energy Drinks</h3>
+        <div class="sub">Red Bull, Monster, Celsius & similar</div>
+        <ul class="offender-effects">
+          <li>Up to 80mg caffeine per can disrupts adenosine receptors, 
+          collapsing deep-sleep architecture, the phase when memory consolidation 
+          and neural repair occur</li>
+          <li>High sugar load (27g+ per 250ml) triggers dopamine spikes 
+          that desensitise reward receptors over time</li>
+          <li>Taurine + caffeine combination amplifies cortisol, keeping the 
+          nervous system in a low-grade stress state that impairs learning</li>
+          <li>Regular use associated with anxiety, palpitations, and 
+          disrupted circadian rhythms in adolescents</li>
+        </ul>
+      </div>
+
+      <div class="offender-card danger fade-in">
+        <div class="card-label">⚠ High Risk</div>
+        <h3>🍕 Ultra-Processed Food</h3>
+        <div class="sub">Fast food, instant noodles, packaged snacks</div>
+        <ul class="offender-effects">
+          <li>NOVA Group 4 foods contain emulsifiers that compromise the 
+          gut lining, promoting systemic inflammation that crosses into the brain</li>
+          <li>Trans fats and refined seed oils compete with omega-3s for 
+          incorporation into neuronal membranes, reducing membrane fluidity</li>
+          <li>Studies link high UPF consumption to measurably smaller 
+          hippocampal volume in imaging studies</li>
+          <li>Depletes B vitamins (B12, folate, B6) critical for 
+          neurotransmitter synthesis and myelin maintenance</li>
+        </ul>
+      </div>
+
+      <div class="offender-card warning fade-in">
+        <div class="card-label">⚠ Moderate Risk</div>
+        <h3>🍬 High-Sugar Diets</h3>
+        <div class="sub">Soda, candy, sweetened yoghurt, juice</div>
+        <ul class="offender-effects">
+          <li>Chronic high sugar suppresses BDNF production, reducing the 
+          brain's capacity for learning and memory formation</li>
+          <li>Blood glucose spikes and crashes create "brain fog" periods 
+          that impair concentration during school hours</li>
+          <li>Alters gut microbiome composition, reducing production of 
+          mood-stabilising short-chain fatty acids</li>
+          <li>Drives neuroinflammation through advanced glycation 
+          end-products (AGEs) that damage neural tissue</li>
+        </ul>
+      </div>
+
+      <div class="offender-card warning fade-in">
+        <div class="card-label">⚠ Moderate Risk</div>
+        <h3>☀️ Skipping Breakfast</h3>
+        <div class="sub">Common pattern among Norwegian students</div>
+        <ul class="offender-effects">
+          <li>The brain uses ~20% of the body's glucose. Fasting through 
+          morning classes means your prefrontal cortex runs on empty</li>
+          <li>Breakfast skipping is associated with lower working memory 
+          scores and reduced attention span in controlled studies</li>
+          <li>Triggers cortisol surge in the morning, priming the brain 
+          for stress reactivity rather than learning mode</li>
+          <li>Missing key morning protein means delayed amino acid 
+          availability for neurotransmitter production throughout the day</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ─── BRAIN FOODS ─── -->
+<section id="brainfoods">
+  <div class="section">
+    <span class="eyebrow">What to Eat Instead</span>
+    <h2 class="section-title">Foods that genuinely<br>boost brain performance</h2>
+    <p class="section-sub">
+      Each of these has specific, researched mechanisms, not just vague health claims.
+    </p>
+
+    <div class="foods-grid">
+      <div class="food-card fade-in">
+        <span class="food-emoji">🐟</span>
+        <h4>Fatty Fish</h4>
+        <p>Salmon, mackerel, and sardines are the richest sources of DHA, the omega-3 that forms neuronal membranes and is directly linked to BDNF production.</p>
+        <span class="nutrient">DHA / EPA</span>
+      </div>
+
+      <div class="food-card fade-in">
+        <span class="food-emoji">🫐</span>
+        <h4>Blueberries</h4>
+        <p>Anthocyanins cross the blood-brain barrier and protect hippocampal neurons from oxidative stress. Studies show improved memory after regular consumption.</p>
+        <span class="nutrient">Anthocyanins</span>
+      </div>
+
+      <div class="food-card fade-in">
+        <span class="food-emoji">🥚</span>
+        <h4>Eggs</h4>
+        <p>Rich in choline, the precursor to acetylcholine, the neurotransmitter responsible for memory and muscle control. Also contains all essential amino acids.</p>
+        <span class="nutrient">Choline / B12</span>
+      </div>
+
+      <div class="food-card fade-in">
+        <span class="food-emoji">🌰</span>
+        <h4>Walnuts</h4>
+        <p>Among the highest plant sources of omega-3 ALA. Also contain polyphenols that reduce neuroinflammation and support hippocampal function.</p>
+        <span class="nutrient">ALA / Polyphenols</span>
+      </div>
+
+      <div class="food-card fade-in">
+        <span class="food-emoji">🥦</span>
+        <h4>Broccoli & Dark Greens</h4>
+        <p>Packed with vitamin K, folate, and glucosinolates. Folate is essential for DNA methylation and neurotransmitter synthesis. Vitamin K supports sphingolipid metabolism in the brain.</p>
+        <span class="nutrient">Folate / Vit K</span>
+      </div>
+
+      <div class="food-card fade-in">
+        <span class="food-emoji">🎃</span>
+        <h4>Pumpkin Seeds</h4>
+        <p>Excellent source of zinc, magnesium, iron, and copper, four micronutrients that have critical roles in nerve signalling and neurotransmitter function.</p>
+        <span class="nutrient">Zinc / Magnesium</span>
+      </div>
+
+      <div class="food-card fade-in">
+        <span class="food-emoji">🍫</span>
+        <h4>Dark Chocolate (70%+)</h4>
+        <p>Flavonoids in cocoa increase cerebral blood flow and BDNF levels. Theobromine provides a gentler, longer-lasting focus boost than caffeine without the crash.</p>
+        <span class="nutrient">Flavonoids / Theobromine</span>
+      </div>
+
+      <div class="food-card fade-in">
+        <span class="food-emoji">🫒</span>
+        <h4>Olive Oil</h4>
+        <p>Oleocanthal in extra-virgin olive oil has anti-inflammatory properties similar to ibuprofen, protecting neurons from the kind of low-grade inflammation that impairs cognition.</p>
+        <span class="nutrient">Oleocanthal / Polyphenols</span>
+      </div>
+
+      <div class="food-card fade-in">
+        <span class="food-emoji">🫘</span>
+        <h4>Lentils & Legumes</h4>
+        <p>Slow-digesting carbohydrates provide stable blood glucose, crucial for sustained cognitive performance without the crash. Also a key plant source of iron and B vitamins.</p>
+        <span class="nutrient">Iron / B Vitamins</span>
+      </div>
+
+      <div class="food-card fade-in">
+        <span class="food-emoji">🍵</span>
+        <h4>Green Tea</h4>
+        <p>Contains L-theanine, an amino acid that increases alpha brain waves, associated with calm, focused alertness. Synergises with caffeine to improve attention without jitteriness.</p>
+        <span class="nutrient">L-Theanine / EGCG</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ─── QUIZ ─── -->
+<section id="quiz-section">
+  <div style="max-width:1200px; margin: 0 auto; padding: 100px 5% 80px;">
+    <span class="eyebrow">Diet Assessment</span>
+    <h2 class="section-title">How is your brain<br>actually being fed?</h2>
+    <p class="section-sub">
+      Answer 10 questions about your real eating habits to get a personalised 
+      brain nutrition score and specific recommendations.
+    </p>
+
+    <div class="quiz-inner">
+      <!-- Progress -->
+      <div class="quiz-progress-bar">
+        <div class="quiz-progress-fill" id="progress-fill" style="width: 0%"></div>
+      </div>
+
+      <!-- Quiz Main -->
+      <div id="quiz-main">
+
+        <!-- Q1 -->
+        <div class="quiz-step active" data-q="1">
+          <div class="quiz-category-tag cat-sugar">⚡ Energy Drinks</div>
+          <div class="quiz-q-num">Question 1 of 10</div>
+          <div class="quiz-question">How many energy drinks do you consume per week?</div>
+          <div class="quiz-hint">Be honest: this is about your actual habits, not what you think you should say.</div>
+          <div class="quiz-options">
+            <button class="quiz-option" data-score="10" onclick="selectOption(this)">
+              <span class="opt-letter">A</span> None, I don't drink them
+            </button>
+            <button class="quiz-option" data-score="7" onclick="selectOption(this)">
+              <span class="opt-letter">B</span> 1 to 2 per week
+            </button>
+            <button class="quiz-option" data-score="3" onclick="selectOption(this)">
+              <span class="opt-letter">C</span> 3 to 5 per week
+            </button>
+            <button class="quiz-option" data-score="0" onclick="selectOption(this)">
+              <span class="opt-letter">D</span> Daily or more
+            </button>
+          </div>
+          <div class="quiz-nav">
+            <span></span>
+            <button class="btn-primary" onclick="nextQ()" disabled id="next-1">Next →</button>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="quiz-step" data-q="2">
+          <div class="quiz-category-tag cat-habits">🌅 Morning Habits</div>
+          <div class="quiz-q-num">Question 2 of 10</div>
+          <div class="quiz-question">How often do you eat breakfast before school?</div>
+          <div class="quiz-hint">Think about your typical week.</div>
+          <div class="quiz-options">
+            <button class="quiz-option" data-score="10" onclick="selectOption(this)">
+              <span class="opt-letter">A</span> Every day, it is a priority for me
+            </button>
+            <button class="quiz-option" data-score="7" onclick="selectOption(this)">
+              <span class="opt-letter">B</span> Most days (4 to 5 times a week)
+            </button>
+            <button class="quiz-option" data-score="3" onclick="selectOption(this)">
+              <span class="opt-letter">C</span> Sometimes (1 to 3 times a week)
+            </button>
+            <button class="quiz-option" data-score="0" onclick="selectOption(this)">
+              <span class="opt-letter">D</span> Rarely or never
+            </button>
+          </div>
+          <div class="quiz-nav">
+            <button class="btn-outline" onclick="prevQ()">← Back</button>
+            <button class="btn-primary" onclick="nextQ()" disabled id="next-2">Next →</button>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="quiz-step" data-q="3">
+          <div class="quiz-category-tag cat-nutrients">🥦 Vegetables & Fruit</div>
+          <div class="quiz-q-num">Question 3 of 10</div>
+          <div class="quiz-question">How many servings of vegetables or fruit do you eat daily?</div>
+          <div class="quiz-hint">One serving = a handful. A glass of juice doesn't count.</div>
+          <div class="quiz-options">
+            <button class="quiz-option" data-score="10" onclick="selectOption(this)">
+              <span class="opt-letter">A</span> 5 or more portions
+            </button>
+            <button class="quiz-option" data-score="7" onclick="selectOption(this)">
+              <span class="opt-letter">B</span> 3 to 4 portions
+            </button>
+            <button class="quiz-option" data-score="3" onclick="selectOption(this)">
+              <span class="opt-letter">C</span> 1 to 2 portions
+            </button>
+            <button class="quiz-option" data-score="0" onclick="selectOption(this)">
+              <span class="opt-letter">D</span> Barely any
+            </button>
+          </div>
+          <div class="quiz-nav">
+            <button class="btn-outline" onclick="prevQ()">← Back</button>
+            <button class="btn-primary" onclick="nextQ()" disabled id="next-3">Next →</button>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="quiz-step" data-q="4">
+          <div class="quiz-category-tag cat-quality">🍔 Fast Food</div>
+          <div class="quiz-q-num">Question 4 of 10</div>
+          <div class="quiz-question">How often do you eat fast food or takeaway?</div>
+          <div class="quiz-hint">Includes McDonald's, kebab, pizza chains, and similar.</div>
+          <div class="quiz-options">
+            <button class="quiz-option" data-score="10" onclick="selectOption(this)">
+              <span class="opt-letter">A</span> Rarely (once a month or less)
+            </button>
+            <button class="quiz-option" data-score="7" onclick="selectOption(this)">
+              <span class="opt-letter">B</span> Once a week
+            </button>
+            <button class="quiz-option" data-score="3" onclick="selectOption(this)">
+              <span class="opt-letter">C</span> 2 to 3 times a week
+            </button>
+            <button class="quiz-option" data-score="0" onclick="selectOption(this)">
+              <span class="opt-letter">D</span> Most days
+            </button>
+          </div>
+          <div class="quiz-nav">
+            <button class="btn-outline" onclick="prevQ()">← Back</button>
+            <button class="btn-primary" onclick="nextQ()" disabled id="next-4">Next →</button>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="quiz-step" data-q="5">
+          <div class="quiz-category-tag cat-hydration">💧 Hydration</div>
+          <div class="quiz-q-num">Question 5 of 10</div>
+          <div class="quiz-question">How much water do you drink on an average school day?</div>
+          <div class="quiz-hint">Even mild dehydration (1 to 2%) noticeably impairs attention and working memory.</div>
+          <div class="quiz-options">
+            <button class="quiz-option" data-score="10" onclick="selectOption(this)">
+              <span class="opt-letter">A</span> 1.5 to 2 or more litres of water
+            </button>
+            <button class="quiz-option" data-score="6" onclick="selectOption(this)">
+              <span class="opt-letter">B</span> About 1 litre
+            </button>
+            <button class="quiz-option" data-score="3" onclick="selectOption(this)">
+              <span class="opt-letter">C</span> A few glasses at most
+            </button>
+            <button class="quiz-option" data-score="0" onclick="selectOption(this)">
+              <span class="opt-letter">D</span> Mostly soda, juice, or energy drinks
+            </button>
+          </div>
+          <div class="quiz-nav">
+            <button class="btn-outline" onclick="prevQ()">← Back</button>
+            <button class="btn-primary" onclick="nextQ()" disabled id="next-5">Next →</button>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="quiz-step" data-q="6">
+          <div class="quiz-category-tag cat-nutrients">🐟 Omega-3 Sources</div>
+          <div class="quiz-q-num">Question 6 of 10</div>
+          <div class="quiz-question">How often do you eat fatty fish, nuts, or seeds?</div>
+          <div class="quiz-hint">Salmon, mackerel, herring, walnuts, flaxseeds, chia seeds.</div>
+          <div class="quiz-options">
+            <button class="quiz-option" data-score="10" onclick="selectOption(this)">
+              <span class="opt-letter">A</span> Several times a week
+            </button>
+            <button class="quiz-option" data-score="7" onclick="selectOption(this)">
+              <span class="opt-letter">B</span> About once a week
+            </button>
+            <button class="quiz-option" data-score="3" onclick="selectOption(this)">
+              <span class="opt-letter">C</span> Rarely, not really my thing
+            </button>
+            <button class="quiz-option" data-score="0" onclick="selectOption(this)">
+              <span class="opt-letter">D</span> Almost never
+            </button>
+          </div>
+          <div class="quiz-nav">
+            <button class="btn-outline" onclick="prevQ()">← Back</button>
+            <button class="btn-primary" onclick="nextQ()" disabled id="next-6">Next →</button>
+          </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="quiz-step" data-q="7">
+          <div class="quiz-category-tag cat-sugar">🍬 Sugar Intake</div>
+          <div class="quiz-q-num">Question 7 of 10</div>
+          <div class="quiz-question">How much added sugar do you consume daily?</div>
+          <div class="quiz-hint">Includes sweets, chocolate, sweetened drinks, baked goods, flavoured yoghurt.</div>
+          <div class="quiz-options">
+            <button class="quiz-option" data-score="10" onclick="selectOption(this)">
+              <span class="opt-letter">A</span> Minimal, I actively limit it
+            </button>
+            <button class="quiz-option" data-score="7" onclick="selectOption(this)">
+              <span class="opt-letter">B</span> A little, occasional treats
+            </button>
+            <button class="quiz-option" data-score="3" onclick="selectOption(this)">
+              <span class="opt-letter">C</span> Quite a bit, most days
+            </button>
+            <button class="quiz-option" data-score="0" onclick="selectOption(this)">
+              <span class="opt-letter">D</span> A lot, it is a large part of my diet
+            </button>
+          </div>
+          <div class="quiz-nav">
+            <button class="btn-outline" onclick="prevQ()">← Back</button>
+            <button class="btn-primary" onclick="nextQ()" disabled id="next-7">Next →</button>
+          </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="quiz-step" data-q="8">
+          <div class="quiz-category-tag cat-habits">🥩 Protein Variety</div>
+          <div class="quiz-q-num">Question 8 of 10</div>
+          <div class="quiz-question">How varied is your protein intake?</div>
+          <div class="quiz-hint">Amino acid diversity = neurotransmitter diversity. Variety matters more than quantity.</div>
+          <div class="quiz-options">
+            <button class="quiz-option" data-score="10" onclick="selectOption(this)">
+              <span class="opt-letter">A</span> Very varied: fish, eggs, legumes, meat, dairy
+            </button>
+            <button class="quiz-option" data-score="7" onclick="selectOption(this)">
+              <span class="opt-letter">B</span> Fairly good, a few different sources
+            </button>
+            <button class="quiz-option" data-score="3" onclick="selectOption(this)">
+              <span class="opt-letter">C</span> Mostly the same 1 to 2 sources
+            </button>
+            <button class="quiz-option" data-score="0" onclick="selectOption(this)">
+              <span class="opt-letter">D</span> Barely any protein in my diet
+            </button>
+          </div>
+          <div class="quiz-nav">
+            <button class="btn-outline" onclick="prevQ()">← Back</button>
+            <button class="btn-primary" onclick="nextQ()" disabled id="next-8">Next →</button>
+          </div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="quiz-step" data-q="9">
+          <div class="quiz-category-tag cat-quality">😴 Sleep Quality</div>
+          <div class="quiz-q-num">Question 9 of 10</div>
+          <div class="quiz-question">How many hours of sleep do you typically get on school nights?</div>
+          <div class="quiz-hint">Sleep is when the brain clears metabolic waste and consolidates memory. Diet directly affects sleep quality.</div>
+          <div class="quiz-options">
+            <button class="quiz-option" data-score="10" onclick="selectOption(this)">
+              <span class="opt-letter">A</span> 8 to 9 hours, I prioritise sleep
+            </button>
+            <button class="quiz-option" data-score="7" onclick="selectOption(this)">
+              <span class="opt-letter">B</span> 7 to 8 hours
+            </button>
+            <button class="quiz-option" data-score="3" onclick="selectOption(this)">
+              <span class="opt-letter">C</span> 5 to 6 hours
+            </button>
+            <button class="quiz-option" data-score="0" onclick="selectOption(this)">
+              <span class="opt-letter">D</span> Under 5 hours
+            </button>
+          </div>
+          <div class="quiz-nav">
+            <button class="btn-outline" onclick="prevQ()">← Back</button>
+            <button class="btn-primary" onclick="nextQ()" disabled id="next-9">Next →</button>
+          </div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="quiz-step" data-q="10">
+          <div class="quiz-category-tag cat-nutrients">🌾 Whole Foods</div>
+          <div class="quiz-q-num">Question 10 of 10</div>
+          <div class="quiz-question">What proportion of your daily food comes from whole, unprocessed sources?</div>
+          <div class="quiz-hint">Whole foods = fruit, veg, meat, fish, eggs, legumes, whole grains, nuts. Not things with 20+ ingredient labels.</div>
+          <div class="quiz-options">
+            <button class="quiz-option" data-score="10" onclick="selectOption(this)">
+              <span class="opt-letter">A</span> More than half, I eat mostly real food
+            </button>
+            <button class="quiz-option" data-score="6" onclick="selectOption(this)">
+              <span class="opt-letter">B</span> About half and half
+            </button>
+            <button class="quiz-option" data-score="2" onclick="selectOption(this)">
+              <span class="opt-letter">C</span> Less than half, lots of packaged food
+            </button>
+            <button class="quiz-option" data-score="0" onclick="selectOption(this)">
+              <span class="opt-letter">D</span> Almost everything is processed or packaged
+            </button>
+          </div>
+          <div class="quiz-nav">
+            <button class="btn-outline" onclick="prevQ()">← Back</button>
+            <button class="btn-primary" onclick="showResults()" disabled id="next-10">See My Brain Score →</button>
+          </div>
+        </div>
+
+      </div><!-- end quiz-main -->
+
+      <!-- RESULTS -->
+      <div id="quiz-results">
+        <div class="result-ring-wrap">
+          <svg class="result-ring-svg" viewBox="0 0 200 200">
+            <circle class="ring-track" cx="100" cy="100" r="82"/>
+            <circle class="ring-fill" id="ring-fill" cx="100" cy="100" r="82"
+              stroke-dasharray="515.2"
+              stroke-dashoffset="515.2"/>
+            <text class="ring-score-text" x="100" y="100" text-anchor="middle" dominant-baseline="central" id="ring-score-text">·</text>
+            <text class="ring-label-text" x="100" y="122" text-anchor="middle" dominant-baseline="central">/100</text>
+          </svg>
+          <div class="result-tier-name" id="result-tier-name"> </div>
+          <div class="result-tier-desc" id="result-tier-desc"> </div>
+        </div>
+
+        <!-- Breakdown bars -->
+        <div class="result-breakdown">
+          <h4>Breakdown by Category</h4>
+          <div class="breakdown-item">
+            <div class="breakdown-label">Energy Drinks</div>
+            <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" id="bar-1" style="width:0%"></div></div>
+          </div>
+          <div class="breakdown-item">
+            <div class="breakdown-label">Breakfast Habits</div>
+            <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" id="bar-2" style="width:0%"></div></div>
+          </div>
+          <div class="breakdown-item">
+            <div class="breakdown-label">Vegetables & Fruit</div>
+            <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" id="bar-3" style="width:0%"></div></div>
+          </div>
+          <div class="breakdown-item">
+            <div class="breakdown-label">Fast Food</div>
+            <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" id="bar-4" style="width:0%"></div></div>
+          </div>
+          <div class="breakdown-item">
+            <div class="breakdown-label">Hydration</div>
+            <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" id="bar-5" style="width:0%"></div></div>
+          </div>
+          <div class="breakdown-item">
+            <div class="breakdown-label">Omega-3 Intake</div>
+            <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" id="bar-6" style="width:0%"></div></div>
+          </div>
+          <div class="breakdown-item">
+            <div class="breakdown-label">Sugar Control</div>
+            <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" id="bar-7" style="width:0%"></div></div>
+          </div>
+          <div class="breakdown-item">
+            <div class="breakdown-label">Protein Variety</div>
+            <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" id="bar-8" style="width:0%"></div></div>
+          </div>
+          <div class="breakdown-item">
+            <div class="breakdown-label">Sleep</div>
+            <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" id="bar-9" style="width:0%"></div></div>
+          </div>
+          <div class="breakdown-item">
+            <div class="breakdown-label">Whole Foods</div>
+            <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" id="bar-10" style="width:0%"></div></div>
+          </div>
+        </div>
+
+        <!-- Tips -->
+        <div id="tips-container" class="tips-grid"></div>
+
+        <div style="text-align:center; margin-top: 1rem;">
+          <button class="btn-outline" onclick="restartQuiz()">Retake the Quiz</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ─── GLOSSARY ─── -->
+<section id="glossary">
+  <div class="section">
+    <span class="eyebrow">Vocabulary</span>
+    <h2 class="section-title">Key neuroscience terms<br>explained</h2>
+    <p class="section-sub">
+      Understanding the vocabulary helps you think more clearly about the science, 
+      and sounds impressive in biology class.
+    </p>
+
+    <div class="glossary-grid">
+
+      <div class="gloss-card fade-in">
+        <div class="gloss-term">Synaptogenesis</div>
+        <div class="gloss-pronunciation">/ si-nap-toh-JEN-uh-sis /</div>
+        <div class="gloss-def">The formation of new synapses, the connections between neurons. This process is extremely active during adolescence and depends on omega-3 fatty acids (especially DHA) as structural material.</div>
+        <div class="gloss-example">Example: "Eating salmon regularly supports synaptogenesis during the teenage years."</div>
+      </div>
+
+      <div class="gloss-card fade-in">
+        <div class="gloss-term">Synaptic Pruning</div>
+        <div class="gloss-pronunciation">/ SIN-ap-tic PROO-ning /</div>
+        <div class="gloss-def">The brain's process of eliminating unused synaptic connections, the classic use it or lose it principle. An essential part of adolescent brain development that makes frequently-used neural pathways stronger and more efficient.</div>
+        <div class="gloss-example">Example: "Skills you practise regularly are protected from synaptic pruning."</div>
+      </div>
+
+      <div class="gloss-card fade-in">
+        <div class="gloss-term">Myelination</div>
+        <div class="gloss-pronunciation">/ MY-uh-lin-AY-shun /</div>
+        <div class="gloss-def">The process of wrapping nerve fibres in myelin, a fatty insulating sheath that dramatically speeds up electrical signal transmission. The prefrontal cortex continues myelinating into the mid-20s.</div>
+        <div class="gloss-example">Example: "Disrupted myelination in the prefrontal cortex can impair impulse control."</div>
+      </div>
+
+      <div class="gloss-card fade-in">
+        <div class="gloss-term">Prefrontal Cortex (PFC)</div>
+        <div class="gloss-pronunciation">/ pre-FRUN-tal KOR-teks /</div>
+        <div class="gloss-def">The front region of the brain responsible for planning, decision-making, impulse control, and moderating social behaviour. The last brain region to fully mature, making it especially vulnerable during adolescence.</div>
+        <div class="gloss-example">Example: "Poor impulse control in teens is partly because the prefrontal cortex is still developing."</div>
+      </div>
+
+      <div class="gloss-card fade-in">
+        <div class="gloss-term">Hippocampus</div>
+        <div class="gloss-pronunciation">/ hip-oh-KAM-pus /</div>
+        <div class="gloss-def">A seahorse-shaped structure deep in the brain critical for forming new memories, spatial navigation, and emotional regulation. Studies show its volume is measurably smaller in people who consistently eat ultra-processed diets.</div>
+        <div class="gloss-example">Example: "The hippocampus converts short-term experiences into long-term memories during sleep."</div>
+      </div>
+
+      <div class="gloss-card fade-in">
+        <div class="gloss-term">Neurotransmitter</div>
+        <div class="gloss-pronunciation">/ nyoo-roh-TRANS-mit-er /</div>
+        <div class="gloss-def">Chemical messengers that transmit signals between neurons across synapses. Key examples: serotonin (mood), dopamine (reward/motivation), GABA (calm focus), acetylcholine (memory). All are synthesised from dietary amino acids and nutrients.</div>
+        <div class="gloss-example">Example: "Low tryptophan intake can reduce serotonin production, affecting mood."</div>
+      </div>
+
+      <div class="gloss-card fade-in">
+        <div class="gloss-term">Neuroinflammation</div>
+        <div class="gloss-pronunciation">/ nyoo-roh-in-flam-AY-shun /</div>
+        <div class="gloss-def">Inflammation occurring within the brain and nervous system. Triggered by poor diet, it can impair synaptogenesis, reduce hippocampal volume, and is associated with depression and cognitive decline.</div>
+        <div class="gloss-example">Example: "Ultra-processed food promotes neuroinflammation through disrupted gut barrier function."</div>
+      </div>
+
+      <div class="gloss-card fade-in">
+        <div class="gloss-term">BDNF</div>
+        <div class="gloss-pronunciation">Brain-Derived Neurotrophic Factor</div>
+        <div class="gloss-def">A protein that acts like fertiliser for neurons, supporting their survival, growth, and formation of new connections. Omega-3s and exercise increase BDNF; chronic sugar consumption suppresses it.</div>
+        <div class="gloss-example">Example: "Regular aerobic exercise combined with a good diet significantly elevates BDNF levels."</div>
+      </div>
+
+      <div class="gloss-card fade-in">
+        <div class="gloss-term">Gut-Brain Axis</div>
+        <div class="gloss-pronunciation">/ gut brayn AK-sis /</div>
+        <div class="gloss-def">The bidirectional communication network between the gastrointestinal tract and the brain, operating via the vagus nerve, immune system, and neurotransmitter signalling. The gut microbiome composition profoundly influences mood and cognition.</div>
+        <div class="gloss-example">Example: "Gut dysbiosis from poor diet can contribute to anxiety via the gut-brain axis."</div>
+      </div>
+
+      <div class="gloss-card fade-in">
+        <div class="gloss-term">Dopamine</div>
+        <div class="gloss-pronunciation">/ DOH-pa-meen /</div>
+        <div class="gloss-def">A neurotransmitter central to reward, motivation, and pleasure. Ultra-processed foods and energy drinks trigger dopamine spikes that can desensitise receptors over time, reducing motivation and requiring higher stimulation to feel satisfied.</div>
+        <div class="gloss-example">Example: "Repeated sugar-induced dopamine spikes can blunt the reward response over time."</div>
+      </div>
+
+      <div class="gloss-card fade-in">
+        <div class="gloss-term">Serotonin</div>
+        <div class="gloss-pronunciation">/ ser-oh-TOE-nin /</div>
+        <div class="gloss-def">A neurotransmitter that regulates mood, appetite, and sleep. About 90% is produced in the gut (not the brain), making dietary choices that support gut health directly relevant to serotonin levels and emotional wellbeing.</div>
+        <div class="gloss-example">Example: "Tryptophan from eggs and turkey is converted into serotonin in the gut lining."</div>
+      </div>
+
+      <div class="gloss-card fade-in">
+        <div class="gloss-term">Blood-Brain Barrier (BBB)</div>
+        <div class="gloss-pronunciation">/ blud brayn BAR-ee-er /</div>
+        <div class="gloss-def">A highly selective membrane separating circulating blood from the brain's extracellular fluid. It filters out most harmful substances, but inflammatory cytokines triggered by poor diet can breach it, causing neuroinflammation.</div>
+        <div class="gloss-example">Example: "Neuroinflammation occurs when inflammatory signals cross the blood-brain barrier."</div>
+      </div>
+
+      <div class="gloss-card fade-in">
+        <div class="gloss-term">Neuroplasticity</div>
+        <div class="gloss-pronunciation">/ nyoo-roh-plas-TIS-i-tee /</div>
+        <div class="gloss-def">The brain's ability to reorganise itself by forming new neural connections. Highest during adolescence and childhood. Supported by omega-3s, exercise, and BDNF, but diminished by chronic stress, sleep deprivation, and poor diet.</div>
+        <div class="gloss-example">Example: "Learning a new language is easier for teens due to higher neuroplasticity."</div>
+      </div>
+
+      <div class="gloss-card fade-in">
+        <div class="gloss-term">DHA (Docosahexaenoic Acid)</div>
+        <div class="gloss-pronunciation">/ dok-oh-sah-hex-ah-EE-no-ik /</div>
+        <div class="gloss-def">An omega-3 fatty acid that makes up roughly 40% of polyunsaturated fats in the brain. Essential for neuronal membrane integrity, synaptogenesis, and BDNF production. Found primarily in oily fish and algae.</div>
+        <div class="gloss-example">Example: "DHA from fatty fish is directly incorporated into developing neuronal membranes."</div>
+      </div>
+
+      <div class="gloss-card fade-in">
+        <div class="gloss-term">Adenosine</div>
+        <div class="gloss-pronunciation">/ ah-DEN-oh-seen /</div>
+        <div class="gloss-def">A molecule that builds up in the brain throughout the day and promotes sleepiness. Caffeine works by blocking adenosine receptors, delaying the sleep signal. Energy drinks' caffeine disrupts this natural rhythm, impairing sleep architecture.</div>
+        <div class="gloss-example">Example: "Caffeine in energy drinks blocks adenosine, masking fatigue without addressing it."</div>
+      </div>
+
+      <div class="gloss-card fade-in">
+        <div class="gloss-term">Microbiome</div>
+        <div class="gloss-pronunciation">/ my-kro-BY-ohm /</div>
+        <div class="gloss-def">The trillions of microorganisms (bacteria, fungi, viruses) living in the gut. Diet is the primary determinant of microbiome composition and, through the gut-brain axis, the microbiome directly influences mood, stress response, and cognitive function.</div>
+        <div class="gloss-example">Example: "A diverse, fibre-rich diet promotes a healthy microbiome and better mood regulation."</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ─── REFERENCES ─── -->
+<section id="references">
+  <div class="refs-inner">
+    <span class="eyebrow">Evidence Base</span>
+    <h2 class="section-title">References &<br>Further Reading</h2>
+    <p class="section-sub">
+      Everything on this site is grounded in peer-reviewed research. 
+      Click any source below to read the original paper.
+    </p>
+
+    <!-- Clinical Studies -->
+    <div class="ref-group">
+      <div class="ref-group-title">Clinical & Neurostructural Studies</div>
+      <div class="ref-list">
+
+        <a class="ref-item" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13035344/" target="_blank" rel="noopener">
+          <div class="ref-num">01 · NIH / PubMed Central</div>
+          <div class="ref-title">Adolescent Nutritional Influences on the Brain and Eating Behaviors</div>
+          <div class="ref-meta">Explores how high-fat, high-sugar diets during puberty alter hippocampal and prefrontal cortex structure, affecting executive function and cognitive control.</div>
+          <div class="ref-link-badge">↗ pmc.ncbi.nlm.nih.gov</div>
+        </a>
+
+        <a class="ref-item" href="https://www.researchgate.net/publication/404584188_Diet_and_the_Developing_Brain_A_Systematic_Review_of_Nutritional_Influences_on_Adolescent_Cognitive_and_Academic_Outcomes_Diet_and_the_Developing_Brain_A_Systematic_Review_of_Nutritional_Influences_on" target="_blank" rel="noopener">
+          <div class="ref-num">02 · ResearchGate / Systematic Review</div>
+          <div class="ref-title">Nutritional Influences on Adolescent Cognitive and Academic Outcomes: A Systematic Review</div>
+          <div class="ref-meta">Synthesises 73 studies including 48 controlled trials. Measures long-term scaffolding effect of nutrition on teen intelligence. Examines adolescence as a critical second window for brain rewiring.</div>
+          <div class="ref-link-badge">↗ researchgate.net</div>
+        </a>
+
+        <a class="ref-item" href="https://academic.oup.com/nutritionreviews/advance-article/doi/10.1093/nutrit/nuaf280/8425951" target="_blank" rel="noopener">
+          <div class="ref-num">03 · Nutrition Reviews / Oxford Academic</div>
+          <div class="ref-title">Nutrition, Brain, Cognition, Learning, and Behavior in School-Age Children</div>
+          <div class="ref-meta">Systematic review tracking how Mediterranean and Nordic dietary patterns and single-nutrient intake modify brain activity, neural processing speed, and cognitive testing in youth.</div>
+          <div class="ref-link-badge">↗ academic.oup.com</div>
+        </a>
+
+        <a class="ref-item" href="https://neurosciencenews.com/early-diet-adolescent-intelligence-30839/" target="_blank" rel="noopener">
+          <div class="ref-num">04 · Neuroscience News / Swansea University</div>
+          <div class="ref-title">Early Life Diet Linked to Adolescent Intelligence Metrics</div>
+          <div class="ref-meta">Comprehensive analysis exploring how early-life nutritional patterns establish baseline neural foundations that dictate cognitive performance during late teen years.</div>
+          <div class="ref-link-badge">↗ neurosciencenews.com</div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Mental Health & Neurochemistry -->
+    <div class="ref-group">
+      <div class="ref-group-title">Diet, Mental Health & Neurochemistry</div>
+      <div class="ref-list">
+
+        <a class="ref-item" href="https://foodandmoodcentre.com.au/2016/07/diet-and-mental-health-in-children-and-adolescents/" target="_blank" rel="noopener">
+          <div class="ref-num">05 · Deakin University / Food & Mood Centre</div>
+          <div class="ref-title">Diet and Mental Health in Children and Adolescents</div>
+          <div class="ref-meta">Research demonstrating that ultra-processed diets are statistically tied to smaller hippocampal volumes, the brain region central to learning, memory, and emotional stabilisation.</div>
+          <div class="ref-link-badge">↗ foodandmoodcentre.com.au</div>
+        </a>
+
+        <a class="ref-item" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7037721/" target="_blank" rel="noopener">
+          <div class="ref-num">06 · PubMed Central</div>
+          <div class="ref-title">Western Diet Impact on Adolescent Gut-Brain Axis and Neuroinflammation</div>
+          <div class="ref-meta">Details how low-quality adolescent diets trigger low-grade systemic neuroinflammation, directly hindering synaptogenesis and myelination during high-plasticity pubertal years.</div>
+          <div class="ref-link-badge">↗ pmc.ncbi.nlm.nih.gov</div>
+        </a>
+
+        <a class="ref-item" href="https://www.health.harvard.edu/blog/nutritional-psychiatry-your-brain-on-food-201511168626" target="_blank" rel="noopener">
+          <div class="ref-num">07 · Harvard Medical School</div>
+          <div class="ref-title">Nutritional Psychiatry: Your Brain on Food</div>
+          <div class="ref-meta">Explains how dietary selections influence serotonin production in the gut, directly affecting cognitive stress management, emotional regulation, and neurochemical signalling in teenagers.</div>
+          <div class="ref-link-badge">↗ health.harvard.edu</div>
+        </a>
+
+        <a class="ref-item" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4981537/" target="_blank" rel="noopener">
+          <div class="ref-num">08 · PubMed Central</div>
+          <div class="ref-title">The Role of Micronutrient Status in Teen Cognitive Performance</div>
+          <div class="ref-meta">Clinical study on iron, zinc, and iodine's impacts on dopamine and serotonin pathways, illustrating how deficiencies alter basic attention mechanisms in adolescents.</div>
+          <div class="ref-link-badge">↗ pmc.ncbi.nlm.nih.gov</div>
+        </a>
+
+        <a class="ref-item" href="https://childpsychservices.com/how-nutrition-affects-teens-mental-health" target="_blank" rel="noopener">
+          <div class="ref-num">09 · Child Psychology Services</div>
+          <div class="ref-title">How Nutrition Affects Teens' Mental Health and Brain Biochemistry</div>
+          <div class="ref-meta">Clinical review showing whole-food diets lower depression risk by up to 35% compared to ultra-processed food alternatives, with specific neurobiochemical mechanisms.</div>
+          <div class="ref-link-badge">↗ childpsychservices.com</div>
+        </a>
+
+        <a class="ref-item" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8781423/" target="_blank" rel="noopener">
+          <div class="ref-num">10 · PubMed Central / Epidemiology</div>
+          <div class="ref-title">Dietary Patterns and Behavioral Outcomes in Adolescents</div>
+          <div class="ref-meta">Epidemiological study tracking thousands of teenagers, mapping a definitive correlation between whole-food dietary compliance and lower instances of behavioural disorders and psychiatric symptoms.</div>
+          <div class="ref-link-badge">↗ ncbi.nlm.nih.gov</div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Video Resources -->
+    <div class="ref-group">
+      <div class="ref-group-title">Video & Multimedia Resources</div>
+      <div class="ref-list">
+
+        <a class="ref-item" href="https://www.youtube.com/watch?v=s4saAbJ0ZWo" target="_blank" rel="noopener">
+          <div class="ref-num">11 · YouTube / Nutrients Journal Analysis</div>
+          <div class="ref-title">How Teen Diet Impacts Mental Health: A Systematic Analysis</div>
+          <div class="ref-meta">Video analysis covering a recent multidisciplinary review published in Nutrients, explaining biological markers linking adolescent dietary patterns to psychological wellness.</div>
+          <div class="ref-link-badge">↗ youtube.com</div>
+        </a>
+
+        <a class="ref-item" href="https://www.youtube.com/watch?v=pLxABMFowIY" target="_blank" rel="noopener">
+          <div class="ref-num">12 · YouTube</div>
+          <div class="ref-title">How Diet Can Improve Teen Health</div>
+          <div class="ref-meta">Explores how good nutrition is vital for healthy adolescent development and how creating a positive food environment helps young people build lasting habits that support brain and body growth.</div>
+          <div class="ref-link-badge">↗ youtube.com</div>
+        </a>
+
+        <a class="ref-item" href="https://www.youtube.com/watch?v=J_03EXyhYS8" target="_blank" rel="noopener">
+          <div class="ref-num">13 · BBC Documentary / Chris Van Tulleken</div>
+          <div class="ref-title">Why Can't We Stop Eating Certain Foods?</div>
+          <div class="ref-meta">BBC documentary examining how changes to the food industry since the 1970s engineered ultra-processed foods to be neurologically irresistible, overriding normal satiety signals and altering reward pathways, directly relevant to teen eating patterns.</div>
+          <div class="ref-link-badge">↗ youtube.com</div>
+        </a>
+
+        <a class="ref-item" href="https://www.youtube.com/watch?v=maUDrHZTK6w" target="_blank" rel="noopener">
+          <div class="ref-num">14 · BBC World Service Podcast</div>
+          <div class="ref-title">What Ultra-Processed Food Does to Your Body</div>
+          <div class="ref-meta">From the BBC's "What in the World" podcast, covering the global rise of ultra-processed food consumption, what happens biologically when we eat it, and why it now makes up the majority of diets in the US and UK.</div>
+          <div class="ref-link-badge">↗ youtube.com</div>
+        </a>
+
+        <a class="ref-item" href="https://www.youtube.com/watch?v=xyQY8a-ng6g" target="_blank" rel="noopener">
+          <div class="ref-num">15 · TED-Ed / Mia Nacamulli</div>
+          <div class="ref-title">How the Food You Eat Affects Your Brain</div>
+          <div class="ref-meta">A TED-Ed animated lesson explaining how dietary choices affect the brain's structure and function, covering neurotransmitter production, glucose regulation, and how short- and long-term eating patterns shape cognition and mood.</div>
+          <div class="ref-link-badge">↗ youtube.com</div>
+        </a>
+
+        <a class="ref-item" href="https://www.youtube.com/watch?v=w_6cH9JJ1_0" target="_blank" rel="noopener">
+          <div class="ref-num">16 · YouTube</div>
+          <div class="ref-title">Nutrition and the Adolescent Brain</div>
+          <div class="ref-meta">A video resource examining the specific nutritional demands of the developing adolescent brain, covering how dietary quality during the teenage years shapes cognitive capacity, emotional regulation, and long-term neurological health.</div>
+          <div class="ref-link-badge">↗ youtube.com</div>
+        </a>
+
+        <a class="ref-item" href="https://www.youtube.com/watch?v=eCa36C6q1Ts" target="_blank" rel="noopener">
+          <div class="ref-num">17 · BBC Global</div>
+          <div class="ref-title">The Food That Can Boost Your Brain</div>
+          <div class="ref-meta">BBC Global report on how specific foods enhance memory and cognitive function, focusing on polyphenols found in blueberries, grapes, and other plant foods and the neuroscience behind their protective effects on brain tissue.</div>
+          <div class="ref-link-badge">↗ youtube.com</div>
+        </a>
+
+
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+</div><!-- end main-content -->
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <p>Neuro-Nutrition for Teens · Evidence-based neuroscience education · Barbara Anna Zielonka</p>
+  <div style="display:flex; gap: 1.5rem; flex-wrap: wrap;">
+    <a href="javascript:void(0)" onclick="navScroll('science')">The Science</a>
+    <a href="javascript:void(0)" onclick="navScroll('quiz-section')">Diet Quiz</a>
+    <a href="javascript:void(0)" onclick="navScroll('glossary')">Glossary</a>
+    <a href="javascript:void(0)" onclick="navScroll('references')">References</a>
+  </div>
+  
+</footer>
+
+<!-- ─── SCRIPTS ─── -->
+<script>
+
+/* ── LIGHT / DARK MODE TOGGLE ── */
+function toggleMode() {
+  const body = document.body;
+  const btn = document.getElementById('mode-btn');
+  const isLight = body.classList.toggle('light-mode');
+  btn.textContent = isLight ? '🌙' : '☀️';
+  btn.title = isLight ? 'Switch to dark mode' : 'Switch to light mode';
+  localStorage.setItem('nn-mode', isLight ? 'light' : 'dark');
+}
+
+// Restore saved preference on load
+(function() {
+  const saved = localStorage.getItem('nn-mode');
+  if (saved === 'light') {
+    document.body.classList.add('light-mode');
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('mode-btn');
+      if (btn) { btn.textContent = '🌙'; btn.title = 'Switch to dark mode'; }
+    });
+  }
+})();
+
+/* ── SCROLL HELPER ── */
+function navScroll(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    const top = el.getBoundingClientRect().top + window.scrollY - 72;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+}
+
+/* ── NEURAL CANVAS ── */
+const canvas = document.getElementById('neural-canvas');
+const ctx = canvas.getContext('2d');
+
+let nodes = [];
+let W, H;
+
+function resizeCanvas() {
+  W = canvas.width = canvas.offsetWidth;
+  H = canvas.height = canvas.offsetHeight;
+  initNodes();
+}
+
+function initNodes() {
+  nodes = [];
+  const count = Math.floor((W * H) / 14000);
+  for (let i = 0; i < count; i++) {
+    nodes.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.35,
+      r: Math.random() * 2.5 + 1.5,
+      pulse: Math.random() * Math.PI * 2
+    });
+  }
+}
+
+function drawNeural() {
+  ctx.clearRect(0, 0, W, H);
+  const t = Date.now() / 1000;
+
+  // Draw connections
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+      const dx = nodes[i].x - nodes[j].x;
+      const dy = nodes[i].y - nodes[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      const maxDist = 130;
+      if (dist < maxDist) {
+        const alpha = (1 - dist / maxDist) * 0.35;
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(67, 97, 238, ${alpha})`;
+        ctx.lineWidth = 0.8;
+        ctx.moveTo(nodes[i].x, nodes[i].y);
+        ctx.lineTo(nodes[j].x, nodes[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+
+  // Draw nodes
+  for (const n of nodes) {
+    n.pulse += 0.03;
+    const glow = Math.sin(n.pulse) * 0.5 + 0.5;
+    const r = n.r + glow * 1.5;
+
+    const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, r * 3);
+    grad.addColorStop(0, `rgba(181, 255, 77, ${0.6 + glow * 0.4})`);
+    grad.addColorStop(1, `rgba(67, 97, 238, 0)`);
+
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, r * 2.5, 0, Math.PI * 2);
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(181, 255, 77, ${0.7 + glow * 0.3})`;
+    ctx.fill();
+
+    n.x += n.vx;
+    n.y += n.vy;
+    if (n.x < 0 || n.x > W) n.vx *= -1;
+    if (n.y < 0 || n.y > H) n.vy *= -1;
+  }
+
+  requestAnimationFrame(drawNeural);
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+drawNeural();
+
+
+/* ── QUIZ ── */
+let currentQ = 1;
+const totalQ = 10;
+let scores = {};
+
+function updateProgress() {
+  const pct = ((currentQ - 1) / totalQ) * 100;
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+
+function selectOption(btn) {
+  const step = btn.closest('.quiz-step');
+  const qNum = parseInt(step.dataset.q);
+
+  // Deselect others
+  step.querySelectorAll('.quiz-option').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+
+  // Store score
+  scores[qNum] = parseInt(btn.dataset.score);
+
+  // Enable next
+  const nextBtn = document.getElementById('next-' + qNum);
+  if (nextBtn) nextBtn.disabled = false;
+}
+
+function nextQ() {
+  const current = document.querySelector(`.quiz-step[data-q="${currentQ}"]`);
+  current.classList.remove('active');
+  currentQ++;
+  const next = document.querySelector(`.quiz-step[data-q="${currentQ}"]`);
+  if (next) next.classList.add('active');
+  updateProgress();
+  window.scrollTo({ top: document.getElementById('quiz-section').offsetTop - 80, behavior: 'smooth' });
+}
+
+function prevQ() {
+  const current = document.querySelector(`.quiz-step[data-q="${currentQ}"]`);
+  current.classList.remove('active');
+  currentQ--;
+  const prev = document.querySelector(`.quiz-step[data-q="${currentQ}"]`);
+  if (prev) prev.classList.add('active');
+  updateProgress();
+}
+
+function showResults() {
+  document.getElementById('progress-fill').style.width = '100%';
+  document.getElementById('quiz-main').style.display = 'none';
+  document.getElementById('quiz-results').style.display = 'block';
+
+  // Calculate total
+  let total = 0;
+  for (let i = 1; i <= totalQ; i++) {
+    total += (scores[i] || 0);
+  }
+  const pct = Math.round(total); // max 100
+
+  // Determine tier
+  let tierName, tierDesc, tierClass, ringClass, barClass;
+
+  if (pct >= 70) {
+    tierName = '🧠 Brain Booster';
+    tierDesc = `Your score of ${pct}/100 shows you're making genuinely good nutritional choices that support your developing brain. Your habits are meaningfully protecting your hippocampus, supporting myelination, and giving your neurotransmitter systems the raw materials they need. Keep it up: these habits compound over time.`;
+    tierClass = 'result-green';
+    ringClass = 'score-ring-green';
+    barClass = 'bar-green';
+  } else if (pct >= 40) {
+    tierName = '⚡ Getting There';
+    tierDesc = `Your score of ${pct}/100 shows a mixed picture. Some of your habits are genuinely brain-supportive, but there are clear areas where your diet may be limiting your cognitive potential, mood stability, and academic performance. Small, consistent changes have a compounding neurological effect.`;
+    tierClass = 'result-orange';
+    ringClass = 'score-ring-orange';
+    barClass = 'bar-orange';
+  } else {
+    tierName = '🔴 Needs Attention';
+    tierDesc = `Your score of ${pct}/100 suggests your current diet may be actively working against your developing brain. During adolescence, nutritional deficits have disproportionate long-term effects. The good news is the brain is highly plastic, and meaningful changes to your diet can produce noticeable cognitive and mood improvements within weeks.`;
+    tierClass = 'result-red';
+    ringClass = 'score-ring-red';
+    barClass = 'bar-red';
+  }
+
+  // Update name/desc
+  const tierEl = document.getElementById('result-tier-name');
+  tierEl.textContent = tierName;
+  tierEl.className = 'result-tier-name ' + tierClass;
+  document.getElementById('result-tier-desc').textContent = tierDesc;
+
+  // Ring animation
+  const ring = document.getElementById('ring-fill');
+  ring.className = 'ring-fill ' + ringClass;
+  const circumference = 2 * Math.PI * 82; // 515.2
+  const offset = circumference * (1 - pct / 100);
+  setTimeout(() => {
+    ring.style.strokeDashoffset = offset;
+  }, 100);
+  document.getElementById('ring-score-text').textContent = pct;
+
+  // Bars
+  for (let i = 1; i <= totalQ; i++) {
+    const barEl = document.getElementById('bar-' + i);
+    const s = scores[i] || 0;
+    const barPct = Math.round((s / 10) * 100);
+    const barColor = barPct >= 70 ? 'bar-green' : barPct >= 40 ? 'bar-orange' : 'bar-red';
+    barEl.className = 'breakdown-bar-fill ' + barColor;
+    setTimeout(() => {
+      barEl.style.width = barPct + '%';
+    }, 300);
+  }
+
+  // Generate personalised tips
+  const tipsContainer = document.getElementById('tips-container');
+  const tips = [];
+
+  if ((scores[1] || 0) < 7) {
+    tips.push({ title: '⚡ Cut Energy Drinks', text: 'Swap energy drinks for green tea. L-theanine + natural caffeine provides focused alertness without the dopamine receptor desensitisation or sleep disruption.' });
+  }
+  if ((scores[2] || 0) < 7) {
+    tips.push({ title: '🌅 Prioritise Breakfast', text: 'Your brain uses 20% of your body\'s glucose. Even eggs on knekkebrød takes 5 minutes. The cognitive difference during first period is measurable.' });
+  }
+  if ((scores[3] || 0) < 7) {
+    tips.push({ title: '🥦 Add Colour to Meals', text: 'Aim for 5 colours per day. Diverse plant pigments (polyphenols) reduce neuroinflammation and provide folate essential for neurotransmitter synthesis.' });
+  }
+  if ((scores[5] || 0) < 7) {
+    tips.push({ title: '💧 Hydrate First', text: 'Keep a water bottle visible during school. Even 1 to 2% dehydration measurably impairs attention and working memory. You will feel the difference.' });
+  }
+  if ((scores[6] || 0) < 7) {
+    tips.push({ title: '🐟 Add Omega-3s', text: 'Norway has incredible access to fatty fish. Salmon twice a week provides the DHA your neuronal membranes are actively building from right now.' });
+  }
+  if ((scores[7] || 0) < 7) {
+    tips.push({ title: '🍬 Replace, Don\'t Remove', text: 'Swap sugary snacks for dark chocolate (70%+) + walnuts. You still get something satisfying but with flavonoids and omega-3s instead of BDNF-suppressing refined sugar.' });
+  }
+  if ((scores[9] || 0) < 7) {
+    tips.push({ title: '😴 Protect Your Sleep', text: 'Memory consolidation and neural repair happen in deep sleep. No screens 1hr before bed + no caffeine after 2pm makes a bigger cognitive difference than most people expect.' });
+  }
+
+  // Default tips if everything looks good
+  if (tips.length < 2) {
+    tips.push({ title: '✅ Maintain Your Habits', text: 'Your diet is already supporting your brain. Consider adding variety to your omega-3 sources and tracking your energy across the school week to notice patterns.' });
+    tips.push({ title: '🌱 Go Deeper', text: 'Try the Mediterranean dietary pattern. Research on Norwegian and Scandinavian teens shows it correlates with higher academic performance and lower depression rates.' });
+  }
+
+  tipsContainer.innerHTML = tips.slice(0, 4).map(t => `
+    <div class="tip-card">
+      <h5>${t.title}</h5>
+      <p>${t.text}</p>
+    </div>
+  `).join('');
+
+  window.scrollTo({ top: document.getElementById('quiz-section').offsetTop - 80, behavior: 'smooth' });
+}
+
+function restartQuiz() {
+  scores = {};
+  currentQ = 1;
+  document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+  document.querySelector('.quiz-step[data-q="1"]').classList.add('active');
+  document.querySelectorAll('.quiz-option').forEach(b => b.classList.remove('selected'));
+  document.querySelectorAll('button[id^="next-"]').forEach(b => b.disabled = true);
+  document.getElementById('progress-fill').style.width = '0%';
+  document.getElementById('quiz-main').style.display = 'block';
+  document.getElementById('quiz-results').style.display = 'none';
+  window.scrollTo({ top: document.getElementById('quiz-section').offsetTop - 80, behavior: 'smooth' });
+}
+
+/* ── SCROLL FADE ── */
+const faders = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+faders.forEach(f => observer.observe(f));
+
+/* ── PAGE SWITCHER ── */
+function hideAllPages() {
+  document.getElementById('main-content').style.display = 'none';
+  document.getElementById('meal-plan-page').style.display = 'none';
+  document.getElementById('myths-page').style.display = 'none';
+  document.getElementById('main-nav-links').style.display = 'none';
+  document.getElementById('meal-plan-nav-links').style.display = 'none';
+  document.getElementById('myths-nav-links').style.display = 'none';
+}
+function showMealPlan() {
+  hideAllPages();
+  document.getElementById('meal-plan-page').style.display = 'block';
+  document.getElementById('meal-plan-nav-links').style.display = 'flex';
+  window.scrollTo({ top: 0 });
+  // Trigger fade-in for day blocks
+  setTimeout(() => {
+    const blocks = document.querySelectorAll('#meal-plan-page .day-block');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.06 });
+    blocks.forEach(b => { b.classList.remove('visible'); obs.observe(b); });
+  }, 100);
+}
+
+function showMainSite() {
+  hideAllPages();
+  document.getElementById('main-content').style.display = 'block';
+  document.getElementById('main-nav-links').style.display = 'flex';
+  window.scrollTo({ top: 0 });
+}
+
+function showMyths() {
+  hideAllPages();
+  document.getElementById('myths-page').style.display = 'block';
+  document.getElementById('myths-nav-links').style.display = 'flex';
+  window.scrollTo({ top: 0 });
+  setTimeout(() => {
+    const cards = document.querySelectorAll('#myths-page .myth-card');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 60);
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.06 });
+    cards.forEach(c => { c.classList.remove('visible'); obs.observe(c); });
+  }, 100);
+}
+
+</script>
+
+
+
+<!-- ══ MYTHS PAGE ══ -->
+<div id="myths-page" style="display:none;">
+
+  <div class="myths-hero">
+    <span class="eyebrow">Myths and Misconceptions</span>
+    <h1 class="page-title">10 things people<br><span class="accent">get wrong</span> about food and the brain</h1>
+    <p class="myths-intro">
+      These misconceptions are everywhere: in adverts, on social media, and in everyday conversation. 
+      Here is what the neuroscience actually says.
+    </p>
+  </div>
+
+  <div class="myths-grid">
+
+    <div class="myth-card">
+      <div class="myth-num-bar"><span class="myth-num">01</span><div class="myth-divider-line"></div></div>
+      <div class="myth-body">
+        <div class="myth-row is-myth">
+          <span class="myth-icon">❌</span>
+          <div><div class="myth-label lbl-myth">Myth</div>
+          <div class="myth-text">Sugar helps you think better.</div></div>
+        </div>
+        <div class="myth-sep"></div>
+        <div class="myth-row is-fact">
+          <span class="myth-icon">✅</span>
+          <div><div class="myth-label lbl-fact">Fact</div>
+          <div class="myth-text">Sugar may provide a quick burst of energy, but it does not improve learning or intelligence. Frequent consumption of high-sugar foods may even impair attention and memory over time.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="myth-card">
+      <div class="myth-num-bar"><span class="myth-num">02</span><div class="myth-divider-line"></div></div>
+      <div class="myth-body">
+        <div class="myth-row is-myth">
+          <span class="myth-icon">❌</span>
+          <div><div class="myth-label lbl-myth">Myth</div>
+          <div class="myth-text">Energy drinks make you smarter.</div></div>
+        </div>
+        <div class="myth-sep"></div>
+        <div class="myth-row is-fact">
+          <span class="myth-icon">✅</span>
+          <div><div class="myth-label lbl-fact">Fact</div>
+          <div class="myth-text">Energy drinks can temporarily increase alertness because of caffeine, but they do not improve learning, memory, or intelligence. They may also disrupt sleep, which is essential for brain function.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="myth-card">
+      <div class="myth-num-bar"><span class="myth-num">03</span><div class="myth-divider-line"></div></div>
+      <div class="myth-body">
+        <div class="myth-row is-myth">
+          <span class="myth-icon">❌</span>
+          <div><div class="myth-label lbl-myth">Myth</div>
+          <div class="myth-text">Breakfast does not matter for your brain.</div></div>
+        </div>
+        <div class="myth-sep"></div>
+        <div class="myth-row is-fact">
+          <span class="myth-icon">✅</span>
+          <div><div class="myth-label lbl-fact">Fact</div>
+          <div class="myth-text">A balanced breakfast can improve attention, mood, and memory for many teenagers. Meals that include protein, fibre, and complex carbohydrates help provide steady energy for learning.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="myth-card">
+      <div class="myth-num-bar"><span class="myth-num">04</span><div class="myth-divider-line"></div></div>
+      <div class="myth-body">
+        <div class="myth-row is-myth">
+          <span class="myth-icon">❌</span>
+          <div><div class="myth-label lbl-myth">Myth</div>
+          <div class="myth-text">Brain supplements can replace a healthy diet.</div></div>
+        </div>
+        <div class="myth-sep"></div>
+        <div class="myth-row is-fact">
+          <span class="myth-icon">✅</span>
+          <div><div class="myth-label lbl-fact">Fact</div>
+          <div class="myth-text">Most people get the nutrients their brains need from a varied diet. Supplements can be helpful in specific cases, such as nutrient deficiencies, but they cannot replace healthy eating habits.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="myth-card">
+      <div class="myth-num-bar"><span class="myth-num">05</span><div class="myth-divider-line"></div></div>
+      <div class="myth-body">
+        <div class="myth-row is-myth">
+          <span class="myth-icon">❌</span>
+          <div><div class="myth-label lbl-myth">Myth</div>
+          <div class="myth-text">One superfood can dramatically boost your brain.</div></div>
+        </div>
+        <div class="myth-sep"></div>
+        <div class="myth-row is-fact">
+          <span class="myth-icon">✅</span>
+          <div><div class="myth-label lbl-fact">Fact</div>
+          <div class="myth-text">There is no magic brain food. Long-term eating habits have a much greater impact on brain health than any single food.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="myth-card">
+      <div class="myth-num-bar"><span class="myth-num">06</span><div class="myth-divider-line"></div></div>
+      <div class="myth-body">
+        <div class="myth-row is-myth">
+          <span class="myth-icon">❌</span>
+          <div><div class="myth-label lbl-myth">Myth</div>
+          <div class="myth-text">Fat is bad for your brain.</div></div>
+        </div>
+        <div class="myth-sep"></div>
+        <div class="myth-row is-fact">
+          <span class="myth-icon">✅</span>
+          <div><div class="myth-label lbl-fact">Fact</div>
+          <div class="myth-text">Healthy fats are essential for brain structure and function. Omega-3 fatty acids, found in foods like fish, walnuts, and flaxseeds, play an important role in brain development and cognition.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="myth-card">
+      <div class="myth-num-bar"><span class="myth-num">07</span><div class="myth-divider-line"></div></div>
+      <div class="myth-body">
+        <div class="myth-row is-myth">
+          <span class="myth-icon">❌</span>
+          <div><div class="myth-label lbl-myth">Myth</div>
+          <div class="myth-text">Coffee can replace sleep.</div></div>
+        </div>
+        <div class="myth-sep"></div>
+        <div class="myth-row is-fact">
+          <span class="myth-icon">✅</span>
+          <div><div class="myth-label lbl-fact">Fact</div>
+          <div class="myth-text">Caffeine may help you feel more awake, but it cannot replace sleep. Sleep is crucial for memory, learning, emotional regulation, and overall brain health.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="myth-card">
+      <div class="myth-num-bar"><span class="myth-num">08</span><div class="myth-divider-line"></div></div>
+      <div class="myth-body">
+        <div class="myth-row is-myth">
+          <span class="myth-icon">❌</span>
+          <div><div class="myth-label lbl-myth">Myth</div>
+          <div class="myth-text">Eating sugary foods is the best way to fuel your brain.</div></div>
+        </div>
+        <div class="myth-sep"></div>
+        <div class="myth-row is-fact">
+          <span class="myth-icon">✅</span>
+          <div><div class="myth-label lbl-fact">Fact</div>
+          <div class="myth-text">The brain uses glucose for energy, but it gets a steady supply from nutritious foods such as whole grains, fruits, vegetables, and legumes. These provide more stable energy than sugary snacks.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="myth-card">
+      <div class="myth-num-bar"><span class="myth-num">09</span><div class="myth-divider-line"></div></div>
+      <div class="myth-body">
+        <div class="myth-row is-myth">
+          <span class="myth-icon">❌</span>
+          <div><div class="myth-label lbl-myth">Myth</div>
+          <div class="myth-text">If you are young, what you eat does not affect your brain.</div></div>
+        </div>
+        <div class="myth-sep"></div>
+        <div class="myth-row is-fact">
+          <span class="myth-icon">✅</span>
+          <div><div class="myth-label lbl-fact">Fact</div>
+          <div class="myth-text">The teenage brain is still developing. Nutrition influences learning, concentration, mood, memory, and long-term brain health.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="myth-card">
+      <div class="myth-num-bar"><span class="myth-num">10</span><div class="myth-divider-line"></div></div>
+      <div class="myth-body">
+        <div class="myth-row is-myth">
+          <span class="myth-icon">❌</span>
+          <div><div class="myth-label lbl-myth">Myth</div>
+          <div class="myth-text">Healthy eating only affects your body, not your mind.</div></div>
+        </div>
+        <div class="myth-sep"></div>
+        <div class="myth-row is-fact">
+          <span class="myth-icon">✅</span>
+          <div><div class="myth-label lbl-fact">Fact</div>
+          <div class="myth-text">Research shows that diet is linked to mood, attention, memory, learning, and mental well-being. What you eat can influence both your physical and mental health.</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div><!-- end myths-page -->
+
+<!-- ══ MEAL PLAN PAGE ══ -->
+<div id="meal-plan-page" style="display:none;">
+
+
+<!-- ─── HERO ─── -->
+<div class="page-hero">
+  <span class="eyebrow">Weekly Plan</span>
+  <h1 class="page-title">
+    7 days of food that<br>
+    <span class="accent">fuels your brain</span>
+  </h1>
+  <p class="page-sub">
+    Every meal here is built around the neuroscience. Real ingredients, practical 
+    combinations, and the specific nutrients your developing brain needs most: 
+    omega-3s for synaptogenesis, iron for dopamine, polyphenols for BDNF, 
+    and slow carbs for all-day focus.
+  </p>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot dot-breakfast"></div> Breakfast</div>
+    <div class="legend-item"><div class="legend-dot dot-lunch"></div> Lunch</div>
+    <div class="legend-item"><div class="legend-dot dot-dinner"></div> Dinner</div>
+  </div>
+
+  <!-- Nutrition banner -->
+  <div class="nutrition-banner">
+    <div class="banner-stat">
+      <div class="label">Core focus</div>
+      <div class="value">Omega-3s, Choline, Iron, Zinc, Polyphenols</div>
+    </div>
+    <div class="banner-stat">
+      <div class="label">Dietary pattern</div>
+      <div class="value">Nordic Mediterranean hybrid</div>
+    </div>
+    <div class="banner-stat">
+      <div class="label">Key principle</div>
+      <div class="value">Stable blood glucose all day long</div>
+    </div>
+    <div class="banner-stat">
+      <div class="label">Norwegian staples used</div>
+      <div class="value">Salmon, mackerel, knekkebrød, skyr</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── WEEK ─── -->
+<div class="week-container">
+
+  <!-- MONDAY -->
+  <div class="day-block">
+    <div class="day-header">
+      <span class="day-number">Day 01</span>
+      <h2 class="day-name">Monday</h2>
+      <span class="day-theme">Omega-3 Focus</span>
+    </div>
+    <div class="meals-row">
+      <div class="meal-card breakfast">
+        <div class="meal-type-bar"></div>
+        <div class="meal-body">
+          <div class="meal-label">Breakfast</div>
+          <span class="meal-emoji">🫐</span>
+          <div class="meal-name">Overnight Oats with Blueberries and Walnuts</div>
+          <p class="meal-desc">Rolled oats soaked overnight in oat milk, topped with fresh blueberries, crushed walnuts, chia seeds, and a drizzle of honey.</p>
+          <div class="meal-nutrients">
+            <span class="nutrient-tag">ALA Omega-3</span>
+            <span class="nutrient-tag">Anthocyanins</span>
+            <span class="nutrient-tag">Slow carbs</span>
+            <span class="nutrient-tag">Fibre</span>
+          </div>
+          <div class="brain-benefit"><strong>Brain benefit:</strong> Blueberry anthocyanins accumulate in the hippocampus and support memory. Walnuts provide ALA that converts partially to DHA.</div>
+        </div>
+      </div>
+      <div class="meal-card lunch">
+        <div class="meal-type-bar"></div>
+        <div class="meal-body">
+          <div class="meal-label">Lunch</div>
+          <span class="meal-emoji">🥗</span>
+          <div class="meal-name">Salmon and Avocado Wrap</div>
+          <p class="meal-desc">Whole grain tortilla with smoked salmon, sliced avocado, spinach leaves, cucumber, and a squeeze of lemon. Served with a side of cherry tomatoes.</p>
+          <div class="meal-nutrients">
+            <span class="nutrient-tag">DHA / EPA</span>
+            <span class="nutrient-tag">Folate</span>
+            <span class="nutrient-tag">Healthy fats</span>
+            <span class="nutrient-tag">Vit K</span>
+          </div>
+          <div class="brain-benefit"><strong>Brain benefit:</strong> Salmon DHA is directly incorporated into neuronal membranes. Spinach folate supports neurotransmitter synthesis.</div>
+        </div>
+      </div>
+      <div class="meal-card dinner">
+        <div class="meal-type-bar"></div>
+        <div class="meal-body">
+          <div class="meal-label">Dinner</div>
+          <span class="meal-emoji">🐟</span>
+          <div class="meal-name">Baked Mackerel with Lentil Salad</div>
+          <p class="meal-desc">Oven-baked mackerel fillet with roasted broccoli, a warm lentil and red onion salad dressed with olive oil, apple cider vinegar, and fresh parsley.</p>
+          <div class="meal-nutrients">
+            <span class="nutrient-tag">DHA / EPA</span>
+            <span class="nutrient-tag">Iron</span>
+            <span class="nutrient-tag">B Vitamins</span>
+            <span class="nutrient-tag">Glucosinolates</span>
+          </div>
+          <div class="brain-benefit"><strong>Brain benefit:</strong> Mackerel is one of the richest DHA sources available. Lentil iron supports dopamine pathway function.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="day-divider">
+
+  <!-- TUESDAY -->
+  <div class="day-block">
+    <div class="day-header">
+      <span class="day-number">Day 02</span>
+      <h2 class="day-name">Tuesday</h2>
+      <span class="day-theme">Choline and Protein</span>
+    </div>
+    <div class="meals-row">
+      <div class="meal-card breakfast">
+        <div class="meal-type-bar"></div>
+        <div class="meal-body">
+          <div class="meal-label">Breakfast</div>
+          <span class="meal-emoji">🥚</span>
+          <div class="meal-name">Scrambled Eggs on Whole Grain with Smoked Salmon</div>
+          <p class="meal-desc">Two eggs scrambled with a little butter, served on toasted dark whole grain bread with a slice of smoked salmon and fresh chives.</p>
+          <div class="meal-nutrients">
+            <span class="nutrient-tag">Choline</span>
+            <span class="nutrient-tag">DHA</span>
+            <span class="nutrient-tag">B12</span>
+            <span class="nutrient-tag">Complete protein</span>
+          </div>
+          <div class="brain-benefit"><strong>Brain benefit:</strong> Egg choline is the precursor to acetylcholine, the neurotransmitter for memory. Combined with salmon DHA, this is one of the most brain-dense breakfasts possible.</div>
+        </div>
+      </div>
+      <div class="meal-card lunch">
+        <div class="meal-type-bar"></div>
+        <div class="meal-body">
+          <div class="meal-label">Lunch</div>
+          <span class="meal-emoji">🍲</span>
+          <div class="meal-name">Red Lentil Soup with Dark Rye Bread</div>
+          <p class="meal-desc">Hearty red lentil and carrot soup with cumin and turmeric, served with two slices of dark rye knekkebrød and a drizzle of extra virgin olive oil.</p>
+          <div class="meal-nutrients">
+            <span class="nutrient-tag">Iron</span>
+            <span class="nutrient-tag">Folate</span>
+            <span class="nutrient-tag">Curcumin</span>
+            <span class="nutrient-tag">Slow carbs</span>
+          </div>
+          <div class="brain-benefit"><strong>Brain benefit:</strong> Turmeric curcumin crosses the blood-brain barrier and has anti-neuroinflammatory effects. Iron in lentils supports serotonin and dopamine production.</div>
+        </div>
+      </div>
+      <div class="meal-card dinner">
+        <div class="meal-type-bar"></div>
+        <div class="meal-body">
+          <div class="meal-label">Dinner</div>
+          <span class="meal-emoji">🥦</span>
+          <div class="meal-name">Chicken Stir-Fry with Dark Greens and Pumpkin Seeds</div>
+          <p class="meal-desc">Sliced chicken breast stir-fried with kale, broccoli, snap peas, garlic, and ginger in a light soy and sesame sauce. Topped with toasted pumpkin seeds.</p>
+          <div class="meal-nutrients">
+            <span class="nutrient-tag">Zinc</span>
+            <span class="nutrient-tag">Magnesium</span>
+            <span class="nutrient-tag">Tryptophan</span>
+            <span class="nutrient-tag">Vit K</span>
+          </div>
+          <div class="brain-benefit"><strong>Brain benefit:</strong> Pumpkin seeds are rich in zinc and magnesium, both essential for nerve signalling. Tryptophan from chicken is converted to serotonin.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="day-divider">
+
+  <!-- WEDNESDAY -->
+  <div class="day-block">
+    <div class="day-header">
+      <span class="day-number">Day 03</span>
+      <h2 class="day-name">Wednesday</h2>
+      <span class="day-theme">Gut-Brain Health</span>
+    </div>
+    <div class="meals-row">
+      <div class="meal-card breakfast">
+        <div class="meal-type-bar"></div>
+        <div class="meal-body">
+          <div class="meal-label">Breakfast</div>
+          <span class="meal-emoji">🍓</span>
+          <div class="meal-name">Skyr Bowl with Mixed Berries and Flaxseeds</div>
+          <p class="meal-desc">Full-fat Norwegian skyr topped with strawberries, raspberries, blueberries, ground flaxseeds, and a handful of granola made with oats and dark chocolate chips.</p>
+          <div class="meal-nutrients">
+            <span class="nutrient-tag">Probiotics</span>
+            <span class="nutrient-tag">ALA</span>
+            <span class="nutrient-tag">Anthocyanins</span>
+            <span class="nutrient-tag">Protein</span>
+          </div>
+          <div class="brain-benefit"><strong>Brain benefit:</strong> Skyr supports the gut microbiome through live cultures, which directly influences serotonin production via the gut-brain axis.</div>
+        </div>
+      </div>
+      <div class="meal-card lunch">
+        <div class="meal-type-bar"></div>
+        <div class="meal-body">
+          <div class="meal-label">Lunch</div>
+          <span class="meal-emoji">🐟</span>
+          <div class="meal-name">Tuna and Egg Salad on Knekkebrød</div>
+          <p class="meal-desc">Canned tuna in olive oil mixed with a boiled egg, capers, and dijon mustard, served on four crispbreads with sliced cucumber and rocket leaves.</p>
+          <div class="meal-nutrients">
+            <span class="nutrient-tag">DHA / EPA</span>
+            <span class="nutrient-tag">Choline</span>
+            <span class="nutrient-tag">B12</span>
+            <span class="nutrient-tag">Selenium</span>
+          </div>
+          <div class="brain-benefit"><strong>Brain benefit:</strong> Tuna and egg together provide a complete amino acid profile for neurotransmitter synthesis alongside choline for memory pathways.</div>
+        </div>
+      </div>
+      <div class="meal-card dinner">
+        <div class="meal-type-bar"></div>
+        <div class="meal-body">
+          <div class="meal-label">Dinner</div>
+          <span class="meal-emoji">🍣</span>
+          <div class="meal-name">Baked Salmon with Quinoa and Steamed Kale</div>
+          <p class="meal-desc">A salmon fillet baked with lemon and dill, served alongside quinoa cooked in vegetable stock and a portion of steamed kale with garlic and olive oil.</p>
+          <div class="meal-nutrients">
+            <span class="nutrient-tag">DHA / EPA</span>
+            <span class="nutrient-tag">Complete protein</span>
+            <span class="nutrient-tag">Vit K</span>
+            <span class="nutrient-tag">Magnesium</span>
+          </div>
+          <div class="brain-benefit"><strong>Brain benefit:</strong> Salmon at dinner supports overnight neural repair and BDNF production. Quinoa provides all essential amino acids for neurotransmitter rebuilding during sleep.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="day-divider">
+
+  <!-- THURSDAY -->
+  <div class="day-block">
+    <div class="day-header">
+      <span class="day-number">Day 04</span>
+      <h2 class="day-name">Thursday</h2>
+      <span class="day-theme">Anti-Inflammation</span>
+    </div>
+    <div class="meals-row">
+      <div class="meal-card breakfast">
+        <div class="meal-type-bar"></div>
+        <div class="meal-body">
+          <div class="meal-label">Breakfast</div>
+          <span class="meal-emoji">🥤</span>
+          <div class="meal-name">Green Smoothie Bowl</div>
+          <p class="meal-desc">Blended frozen banana, baby spinach, blueberries, and oat milk, poured thick into a bowl and topped with sliced kiwi, chia seeds, and almond butter.</p>
+          <div class="meal-nutrients">
+            <span class="nutrient-tag">Folate</span>
+            <span class="nutrient-tag">Anthocyanins</span>
+            <span class="nutrient-tag">ALA</span>
+            <span class="nutrient-tag">Potassium</span>
+          </div>
+          <div class="brain-benefit"><strong>Brain benefit:</strong> Spinach folate supports DNA methylation and neurotransmitter synthesis. Banana tryptophan supports serotonin production throughout the school day.</div>
+        </div>
+      </div>
+      <div class="meal-card lunch">
+        <div class="meal-type-bar"></div>
+        <div class="meal-body">
+          <div class="meal-label">Lunch</div>
+          <span class="meal-emoji">🍝</span>
+          <div class="meal-name">Whole Grain Pasta with Sardines and Olive Oil</div>
+          <p class="meal-desc">Al dente whole grain pasta tossed with canned sardines in olive oil, roasted cherry tomatoes, garlic, capers, and fresh basil. Finished with a pinch of chilli flakes.</p>
+          <div class="meal-nutrients">
+            <span class="nutrient-tag">DHA / EPA</span>
+            <span class="nutrient-tag">Lycopene</span>
+            <span class="nutrient-tag">Oleocanthal</span>
+            <span class="nutrient-tag">Slow carbs</span>
+          </div>
+          <div class="brain-benefit"><strong>Brain benefit:</strong> Sardines are rich in EPA which specifically reduces neuroinflammation. Olive oil oleocanthal has anti-inflammatory properties that protect neuronal tissue.</div>
+        </div>
+      </div>
+      <div class="meal-card dinner">
+        <div class="meal-type-bar"></div>
+        <div class="meal-body">
+          <div class="meal-label">Dinner</div>
+          <span class="meal-emoji">🍛</span>
+          <div class="meal-name">Lentil and Vegetable Curry with Brown Rice</div>
+          <p class="meal-desc">Red and green lentils slow-cooked with sweet potato, spinach, coconut milk, turmeric, cumin, coriander, and ginger. Served on brown basmati rice.</p>
+          <div class="meal-nutrients">
+            <span class="nutrient-tag">Curcumin</span>
+            <span class="nutrient-tag">Iron</span>
+            <span class="nutrient-tag">Folate</span>
+            <span class="nutrient-tag">Medium-chain fats</span>
+          </div>
+          <div class="brain-benefit"><strong>Brain benefit:</strong> Turmeric and ginger are among the most studied anti-neuroinflammatory foods. Iron from lentils boosts attention and cognitive stamina.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="day-divider">
+
+  <!-- FRIDAY -->
+  <div class="day-block">
+    <div class="day-header">
+      <span class="day-number">Day 05</span>
+      <h2 class="day-name">Friday</h2>
+      <span class="day-theme">Focus and Energy</span>
+    </div>
+    <div class="meals-row">
+      <div class="meal-card breakfast">
+        <div class="meal-type-bar"></div>
+        <div class="meal-body">
+          <div class="meal-label">Breakfast</div>
+          <span class="meal-emoji">🥑</span>
+          <div class="meal-name">Avocado Toast with Poached Eggs and Pumpkin Seeds</div>
+          <p class="meal-desc">Two slices of dark sourdough with smashed avocado, two poached eggs, a sprinkle of pumpkin seeds, cracked black pepper, and red chilli flakes.</p>
+          <div class="meal-nutrients">
+            <span class="nutrient-tag">Choline</span>
+            <span class="nutrient-tag">Healthy fats</span>
+            <span class="nutrient-tag">Zinc</span>
+            <span class="nutrient-tag">B Vitamins</span>
+          </div>
+          <div class="brain-benefit"><strong>Brain benefit:</strong> Avocado monounsaturated fats support cerebral blood flow and myelin health. Eggs provide all eight essential amino acids for neurotransmitter production.</div>
+        </div>
+      </div>
+      <div class="meal-card lunch">
+        <div class="meal-type-bar"></div>
+        <div class="meal-body">
+          <div class="meal-label">Lunch</div>
+          <span class="meal-emoji">🫙</span>
+          <div class="meal-name">Mackerel on Knekkebrød with Cucumber Salad</div>
+          <p class="meal-desc">Smoked mackerel on whole grain crispbread with a simple cucumber, dill, and skyr dressing. Served with a side of sliced bell peppers and cherry tomatoes.</p>
+          <div class="meal-nutrients">
+            <span class="nutrient-tag">DHA / EPA</span>
+            <span class="nutrient-tag">Vit D</span>
+            <span class="nutrient-tag">Probiotics</span>
+            <span class="nutrient-tag">Vit C</span>
+          </div>
+          <div class="brain-benefit"><strong>Brain benefit:</strong> Mackerel is exceptionally high in Vitamin D, which is critical for neuronal health and is commonly deficient in Norwegian teens during winter months.</div>
+        </div>
+      </div>
+      <div class="meal-card dinner">
+        <div class="meal-type-bar"></div>
+        <div class="meal-body">
+          <div class="meal-label">Dinner</div>
+          <span class="meal-emoji">🐡</span>
+          <div class="meal-name">Baked Cod with Sweet Potato and Walnut Dressing</div>
+          <p class="meal-desc">A generous cod fillet baked with herbs, served with roasted sweet potato wedges, steamed broccoli, and a warm walnut, olive oil, and lemon dressing.</p>
+          <div class="meal-nutrients">
+            <span class="nutrient-tag">Selenium</span>
+            <span class="nutrient-tag">ALA</span>
+            <span class="nutrient-tag">Beta-carotene</span>
+            <span class="nutrient-tag">Polyphenols</span>
+          </div>
+          <div class="brain-benefit"><strong>Brain benefit:</strong> Walnut polyphenols reduce neuroinflammation and support hippocampal function. Sweet potato beta-carotene is a powerful antioxidant that protects developing neural tissue.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="day-divider">
+
+  <!-- SATURDAY -->
+  <div class="day-block">
+    <div class="day-header">
+      <span class="day-number">Day 06</span>
+      <h2 class="day-name">Saturday</h2>
+      <span class="day-theme">Reward and Recovery</span>
+    </div>
+    <div class="meals-row">
+      <div class="meal-card breakfast">
+        <div class="meal-type-bar"></div>
+        <div class="meal-body">
+          <div class="meal-label">Breakfast</div>
+          <span class="meal-emoji">🥞</span>
+          <div class="meal-name">Oat and Banana Pancakes with Blueberry Compote</div>
+          <p class="meal-desc">Thick pancakes made with oat flour, ripe banana, eggs, and a pinch of cinnamon. Served with a warm blueberry and lemon compote and a dollop of skyr.</p>
+          <div class="meal-nutrients">
+            <span class="nutrient-tag">Slow carbs</span>
+            <span class="nutrient-tag">Anthocyanins</span>
+            <span class="nutrient-tag">Choline</span>
+            <span class="nutrient-tag">Tryptophan</span>
+          </div>
+          <div class="brain-benefit"><strong>Brain benefit:</strong> Oat flour provides beta-glucan fibre that feeds beneficial gut bacteria, improving the gut-brain axis. Blueberry compote delivers concentrated polyphenols.</div>
+        </div>
+      </div>
+      <div class="meal-card lunch">
+        <div class="meal-type-bar"></div>
+        <div class="meal-body">
+          <div class="meal-label">Lunch</div>
+          <span class="meal-emoji">🥙</span>
+          <div class="meal-name">Chickpea and Roasted Vegetable Salad with Tahini</div>
+          <p class="meal-desc">Roasted courgette, red pepper, and red onion on a bed of rocket with chickpeas, toasted sesame seeds, and a tahini-lemon dressing. Topped with fresh mint.</p>
+          <div class="meal-nutrients">
+            <span class="nutrient-tag">Zinc</span>
+            <span class="nutrient-tag">Iron</span>
+            <span class="nutrient-tag">Fibre</span>
+            <span class="nutrient-tag">Vit C</span>
+          </div>
+          <div class="brain-benefit"><strong>Brain benefit:</strong> Chickpeas are one of the best plant sources of choline and iron. Tahini provides zinc and calcium essential for nerve signalling and neurotransmitter release.</div>
+        </div>
+      </div>
+      <div class="meal-card dinner">
+        <div class="meal-type-bar"></div>
+        <div class="meal-body">
+          <div class="meal-label">Dinner</div>
+          <span class="meal-emoji">🍋</span>
+          <div class="meal-name">Grilled Salmon with Asparagus and Lemon Quinoa</div>
+          <p class="meal-desc">Grilled salmon fillet with charred asparagus spears, served over lemon-zested quinoa with toasted pine nuts and fresh rocket. Finished with extra virgin olive oil.</p>
+          <div class="meal-nutrients">
+            <span class="nutrient-tag">DHA / EPA</span>
+            <span class="nutrient-tag">Folate</span>
+            <span class="nutrient-tag">Oleocanthal</span>
+            <span class="nutrient-tag">Complete protein</span>
+          </div>
+          <div class="brain-benefit"><strong>Brain benefit:</strong> Asparagus is one of the highest food sources of folate, essential for the synthesis of serotonin and dopamine. Paired with salmon DHA, this supports overnight BDNF production.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="day-divider">
+
+  <!-- SUNDAY -->
+  <div class="day-block">
+    <div class="day-header">
+      <span class="day-number">Day 07</span>
+      <h2 class="day-name">Sunday</h2>
+      <span class="day-theme">Reset and Restore</span>
+    </div>
+    <div class="meals-row">
+      <div class="meal-card breakfast">
+        <div class="meal-type-bar"></div>
+        <div class="meal-body">
+          <div class="meal-label">Breakfast</div>
+          <span class="meal-emoji">🍳</span>
+          <div class="meal-name">Veggie Omelette with Spinach and Mushrooms</div>
+          <p class="meal-desc">A three-egg omelette filled with sautéed spinach, mushrooms, cherry tomatoes, and a little feta cheese. Served with a slice of whole grain toast and green tea.</p>
+          <div class="meal-nutrients">
+            <span class="nutrient-tag">Choline</span>
+            <span class="nutrient-tag">B Vitamins</span>
+            <span class="nutrient-tag">L-Theanine</span>
+            <span class="nutrient-tag">Iron</span>
+          </div>
+          <div class="brain-benefit"><strong>Brain benefit:</strong> Mushrooms contain ergothioneine, a unique antioxidant that accumulates in brain tissue. Green tea L-theanine promotes calm focus as you ease into the week ahead.</div>
+        </div>
+      </div>
+      <div class="meal-card lunch">
+        <div class="meal-type-bar"></div>
+        <div class="meal-body">
+          <div class="meal-label">Lunch</div>
+          <span class="meal-emoji">🍵</span>
+          <div class="meal-name">Homemade Fish Soup with Root Vegetables</div>
+          <p class="meal-desc">A warming broth with cod, salmon chunks, carrot, celeriac, leek, and fresh dill. Served with a thick slice of whole grain bread and a drizzle of olive oil.</p>
+          <div class="meal-nutrients">
+            <span class="nutrient-tag">DHA / EPA</span>
+            <span class="nutrient-tag">Iodine</span>
+            <span class="nutrient-tag">Beta-carotene</span>
+            <span class="nutrient-tag">Selenium</span>
+          </div>
+          <div class="brain-benefit"><strong>Brain benefit:</strong> Iodine from fish is critical for thyroid function, which directly regulates the pace of brain development in adolescence. This is a commonly overlooked micronutrient.</div>
+        </div>
+      </div>
+      <div class="meal-card dinner">
+        <div class="meal-type-bar"></div>
+        <div class="meal-body">
+          <div class="meal-label">Dinner</div>
+          <span class="meal-emoji">🍗</span>
+          <div class="meal-name">Slow-Cooked Chicken with Lentils and Fresh Herbs</div>
+          <p class="meal-desc">Chicken thighs slow-cooked with Puy lentils, roasted root vegetables, garlic, rosemary, and thyme. Finished with a walnut and parsley gremolata and dark bread.</p>
+          <div class="meal-nutrients">
+            <span class="nutrient-tag">Tryptophan</span>
+            <span class="nutrient-tag">Iron</span>
+            <span class="nutrient-tag">ALA</span>
+            <span class="nutrient-tag">B6</span>
+          </div>
+          <div class="brain-benefit"><strong>Brain benefit:</strong> Chicken tryptophan combined with lentil iron and B6 creates the ideal conditions for serotonin synthesis before sleep, supporting overnight memory consolidation.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ─── TIPS STRIP ─── -->
+<div class="tips-strip">
+  <div class="tips-strip-inner">
+    <h3>🧠 Making this work in real life</h3>
+    <div class="tips-grid">
+      <div class="tip-item">
+        <div class="tip-icon">🛒</div>
+        <div>
+          <h5>Shop once, eat well all week</h5>
+          <p>Salmon, eggs, lentils, oats, frozen berries, and olive oil cover most of this plan. Buy in bulk on the weekend to reduce cost and effort.</p>
+        </div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-icon">⏱️</div>
+        <div>
+          <h5>Prep overnight oats the evening before</h5>
+          <p>Monday and any overnight oat breakfast takes 3 minutes the night before. No excuses for skipping breakfast when it is already waiting in the fridge.</p>
+        </div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-icon">🫙</div>
+        <div>
+          <h5>Knekkebrød is your best friend</h5>
+          <p>Norwegian crispbread with salmon, tuna, or egg takes 4 minutes to prepare and delivers more brain-supporting nutrients per calorie than almost any other lunch.</p>
+        </div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-icon">🍫</div>
+        <div>
+          <h5>Dark chocolate as your study snack</h5>
+          <p>A square or two of 70 percent cocoa chocolate provides flavonoids that increase cerebral blood flow, giving you a real cognitive boost during revision sessions.</p>
+        </div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-icon">💧</div>
+        <div>
+          <h5>Drink water before anything else</h5>
+          <p>Start every morning with a full glass of water before eating. Even mild overnight dehydration impairs attention during first period at school.</p>
+        </div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-icon">🌿</div>
+        <div>
+          <h5>Colour is your measure of quality</h5>
+          <p>If your plate has four or more distinct colours from real food, you are almost certainly getting the polyphenol diversity your brain needs to fight neuroinflammation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+</body>
+</html>
